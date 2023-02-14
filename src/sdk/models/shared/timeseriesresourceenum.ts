@@ -1,0 +1,30 @@
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+
+export enum TimeseriesResourceEnum {
+    ActiveEnergyBurned = "active_energy_burned",
+    BasalEnergyBurned = "basal_energy_burned",
+    DistanceWalkingRunning = "distance_walking_running",
+    BloodOxygen = "blood_oxygen",
+    BloodPressure = "blood_pressure",
+    BodyFat = "body/fat",
+    BodyWeight = "body/weight",
+    Cholesterol = "cholesterol",
+    CholesterolLdl = "cholesterol/ldl",
+    CholesterolHdl = "cholesterol/hdl",
+    CholesterolTotal = "cholesterol/total",
+    CholesterolTriglycerides = "cholesterol/triglycerides",
+    FloorsClimbed = "floors_climbed",
+    Glucose = "glucose",
+    Heartrate = "heartrate",
+    Hrv = "hrv",
+    HeartrateVariability = "heartrate_variability",
+    Hypnogram = "hypnogram",
+    Ige = "ige",
+    Igg = "igg",
+    RespiratoryRate = "respiratory_rate",
+    Steps = "steps",
+    Vo2Max = "vo2_max",
+    Water = "water",
+    Caffeine = "caffeine",
+    MindfulnessMinutes = "mindfulness_minutes"
+}
