@@ -1,0 +1,30 @@
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+
+export enum ProvidersEnum {
+    Oura = "oura",
+    Fitbit = "fitbit",
+    Garmin = "garmin",
+    Whoop = "whoop",
+    Strava = "strava",
+    Renpho = "renpho",
+    Peloton = "peloton",
+    Wahoo = "wahoo",
+    Zwift = "zwift",
+    FreestyleLibre = "freestyle_libre",
+    FreestyleLibreBle = "freestyle_libre_ble",
+    EightSleep = "eight_sleep",
+    Withings = "withings",
+    AppleHealthKit = "apple_health_kit",
+    Manual = "manual",
+    Ihealth = "ihealth",
+    GoogleFit = "google_fit",
+    BeurerApi = "beurer_api",
+    BeurerBle = "beurer_ble",
+    OmronBle = "omron_ble",
+    AccuchekBle = "accuchek_ble",
+    ContourBle = "contour_ble",
+    Dexcom = "dexcom",
+    Hammerhead = "hammerhead",
+    MyFitnessPal = "my_fitness_pal",
+    HealthConnect = "health_connect"
+}
