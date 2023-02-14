@@ -3,3 +3,4 @@ typescript:
     packagename: '@vital/sdk'
     author: vital
 sdkclassname: vital
+baseserverurl: https://api.tryvital.io/
