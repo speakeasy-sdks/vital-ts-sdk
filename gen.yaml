@@ -1,0 +1,5 @@
+typescript:
+    version: 1.0.0
+    packagename: '@vital/sdk'
+    author: vital
+sdkclassname: vital
