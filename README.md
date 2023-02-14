@@ -1,4 +1,10 @@
-# @vital/sdk
+# Vital Node SDK
+
+<div align="center">
+   <p>API for at-home health. Wearables and Lab test API for digital health companies.</p>
+   <a href="https://github.com/speakeasy-sdks/vital-ts-sdk/actions"><img src="https://img.shields.io/github/actions/workflow/status/speakeasy-sdks/vital-ts-sdk/speakeasy_sdk_generation.yml?style=for-the-badge" /></a>
+   <a href="https://docs.tryvital.io/api-reference"><img src="https://img.shields.io/static/v1?label=Docs&message=API Ref&color=000&style=for-the-badge" /></a>
+</div>
 
 <!-- Start SDK Installation -->
 ## SDK Installation
@@ -15,6 +21,23 @@ npm add @vital/sdk
 yarn add @vital/sdk
 ```
 <!-- End SDK Installation -->
+
+## Authentication
+
+Authentication is currently done through `api_key` authentication. You can retrieve these keys from the [dashboard](https://app.tryvital.io/). You can then provide the `api_key` in the `x-vital-api-key` header of your request. For instance:
+
+```bash
+curl --request GET
+  --url '{{BASE_URL}}/v2/providers'
+  --header 'x-vital-api-key: <YOUR-API-KEY>'
+```
+
+### Legacy
+
+Authentication was previously handled using Bearer tokens. To generate a token use your `client_id` and `client_secret` and make a call to the respective auth endpoint.
+
+sandbox:`https://auth.sandbox.tryvital.io/oauth/token`
+production:`https://auth.tryvital.io/oauth/token`
 
 ## SDK Example Usage
 <!-- Start SDK Example Usage -->
