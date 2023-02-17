@@ -457,6 +457,62 @@ export class User {
 
   
   /**
+   * patchUserV2UserUserIdPatch - Patch User
+  **/
+  patchUserV2UserUserIdPatch(
+    req: operations.PatchUserV2UserUserIdPatchRequest,
+    config?: AxiosRequestConfig
+  ): Promise<operations.PatchUserV2UserUserIdPatchResponse> {
+    if (!(req instanceof utils.SpeakeasyBase)) {
+      req = new operations.PatchUserV2UserUserIdPatchRequest(req);
+    }
+    
+    const baseURL: string = this._serverURL;
+    const url: string = utils.generateURL(baseURL, "/v2/user/{user_id}", req.pathParams);
+
+    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+
+    try {
+      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req);
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        throw new Error(`Error serializing request body, cause: ${e.message}`);
+      }
+    }
+    
+    const client: AxiosInstance = this._defaultClient!;
+    const headers = {...reqBodyHeaders, ...config?.headers};
+    if (reqBody == null || Object.keys(reqBody).length === 0) throw new Error("request body is required");
+    
+    const r = client.request({
+      url: url,
+      method: "patch",
+      headers: headers,
+      data: reqBody, 
+      ...config,
+    });
+    
+    return r.then((httpRes: AxiosResponse) => {
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) throw new Error(`status code not found in response: ${httpRes}`);
+        const res: operations.PatchUserV2UserUserIdPatchResponse = {statusCode: httpRes.status, contentType: contentType};
+        switch (true) {
+          case httpRes?.status == 204:
+            break;
+          case httpRes?.status == 422:
+            if (utils.matchContentType(contentType, `application/json`)) {
+                res.httpValidationError = httpRes?.data;
+            }
+            break;
+        }
+
+        return res;
+      })
+  }
+
+  
+  /**
    * refreshUserIdV2UserRefreshUserIdPost - Refresh User Id
    *
    * Trigger a manual refresh for a specific user

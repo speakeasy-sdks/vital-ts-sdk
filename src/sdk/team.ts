@@ -565,6 +565,65 @@ export class Team {
 
   
   /**
+   * migrateTeamV2TeamTeamIdAdminMigratePost - Migrate Team
+  **/
+  migrateTeamV2TeamTeamIdAdminMigratePost(
+    req: operations.MigrateTeamV2TeamTeamIdAdminMigratePostRequest,
+    config?: AxiosRequestConfig
+  ): Promise<operations.MigrateTeamV2TeamTeamIdAdminMigratePostResponse> {
+    if (!(req instanceof utils.SpeakeasyBase)) {
+      req = new operations.MigrateTeamV2TeamTeamIdAdminMigratePostRequest(req);
+    }
+    
+    const baseURL: string = this._serverURL;
+    const url: string = utils.generateURL(baseURL, "/v2/team/{team_id}/admin/migrate", req.pathParams);
+
+    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+
+    try {
+      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req);
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        throw new Error(`Error serializing request body, cause: ${e.message}`);
+      }
+    }
+    
+    const client: AxiosInstance = this._defaultClient!;
+    const headers = {...reqBodyHeaders, ...config?.headers};
+    if (reqBody == null || Object.keys(reqBody).length === 0) throw new Error("request body is required");
+    
+    const r = client.request({
+      url: url,
+      method: "post",
+      headers: headers,
+      data: reqBody, 
+      ...config,
+    });
+    
+    return r.then((httpRes: AxiosResponse) => {
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) throw new Error(`status code not found in response: ${httpRes}`);
+        const res: operations.MigrateTeamV2TeamTeamIdAdminMigratePostResponse = {statusCode: httpRes.status, contentType: contentType};
+        switch (true) {
+          case httpRes?.status == 200:
+            if (utils.matchContentType(contentType, `application/json`)) {
+                res.migrateTeamV2TeamTeamIdAdminMigratePost200ApplicationJSONAny = httpRes?.data;
+            }
+            break;
+          case httpRes?.status == 422:
+            if (utils.matchContentType(contentType, `application/json`)) {
+                res.httpValidationError = httpRes?.data;
+            }
+            break;
+        }
+
+        return res;
+      })
+  }
+
+  
+  /**
    * rotateApiKeyV2TeamTeamIdApikeyApiKeyIdRotatePatch - Rotate Api Key
    *
    * Deprecated. Rotate api key.
