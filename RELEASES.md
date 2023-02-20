@@ -29,3 +29,9 @@ Based on:
 Based on:
 - OpenAPI Doc 0.1.619 https://api.tryvital.io/openapi.json
 - Speakeasy CLI 1.3.3 https://github.com/speakeasy-api/speakeasy
+
+## Version 1.1.5
+### Changes
+Based on:
+- OpenAPI Doc 0.1.619 https://api.tryvital.io/openapi.json
+- Speakeasy CLI 1.3.3 https://github.com/speakeasy-api/speakeasy

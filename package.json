@@ -1,6 +1,6 @@
 {
   "name": "@vital/sdk",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "author": "vital",
   "scripts": {
     "prepare": "tsc --build"
