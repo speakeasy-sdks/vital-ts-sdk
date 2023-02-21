@@ -82,6 +82,8 @@ export * from "./getuserworkoutsrawv2summaryworkoutsuseridrawget";
 export * from "./getuserworkoutsv2summaryworkoutsuseridget";
 export * from "./getuserworkoutsv2timeseriesworkoutsworkoutidstreamget";
 export * from "./ihealthwebhookv2datawebhookihealthpost";
+export * from "./migrateteamv2teamteamidadminmigratepost";
+export * from "./patchuserv2useruseridpatch";
 export * from "./postuseractivityv2summaryactivityuseridpost";
 export * from "./postuserbloodpressurev2timeseriesuseridbloodpressurepost";
 export * from "./postuserbodyv2summarybodyuseridpost";

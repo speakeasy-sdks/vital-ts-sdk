@@ -87,6 +87,7 @@ src/sdk/models/operations/getsvixwebhookurlv2teamsvixurlget.ts
 src/sdk/models/operations/getteamconfigv2teamlinkconfigget.ts
 src/sdk/models/operations/getteamusercountv2teamteamiduserscountget.ts
 src/sdk/models/operations/getteamv2teamteamidget.ts
+src/sdk/models/operations/migrateteamv2teamteamidadminmigratepost.ts
 src/sdk/models/operations/rotateapikeyv2teamteamidapikeyapikeyidrotatepatch.ts
 src/sdk/models/operations/searchteamusersbyuuidorclientuseridv2teamuserssearchget.ts
 src/sdk/models/operations/updateapikeylabelv2teamteamidapikeyapikeyidpatch.ts
@@ -128,6 +129,7 @@ src/sdk/models/operations/getteamsmetricsv2usermetricsget.ts
 src/sdk/models/operations/getteamsusersv2userget.ts
 src/sdk/models/operations/getuserbyclientuseridv2userresolveclientuseridget.ts
 src/sdk/models/operations/getuserv2useruseridget.ts
+src/sdk/models/operations/patchuserv2useruseridpatch.ts
 src/sdk/models/operations/refreshuseridv2userrefreshuseridpost.ts
 src/sdk/models/operations/index.ts
 src/sdk/models/shared/httpvalidationerror.ts
@@ -274,6 +276,8 @@ src/sdk/models/shared/connectedsourceclientfacingredacted.ts
 src/sdk/models/shared/teamcreate.ts
 src/sdk/models/shared/clientfacingteam.ts
 src/sdk/models/shared/clientfacingapikey.ts
+src/sdk/models/shared/migratepayload.ts
+src/sdk/models/shared/dbenvironment.ts
 src/sdk/models/shared/clientfacinguser.ts
 src/sdk/models/shared/updateapikeybody.ts
 src/sdk/models/shared/teamupdate.ts
@@ -305,6 +309,7 @@ src/sdk/models/shared/clientfacingsourcewithstatus.ts
 src/sdk/models/shared/metricsresult.ts
 src/sdk/models/shared/timeseriesmetricpoint.ts
 src/sdk/models/shared/paginatedusersresponse.ts
+src/sdk/models/shared/userpatchbody.ts
 src/sdk/models/shared/userrefreshsuccessresponse.ts
 src/sdk/models/shared/userrefresherrorresponse.ts
 src/sdk/models/shared/index.ts
