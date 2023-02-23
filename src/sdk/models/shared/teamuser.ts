@@ -2,6 +2,24 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { ConnectedSourceClientFacing } from "./connectedsourceclientfacing";
 
 
+// TeamUserFallbackTimeZone
+/** 
+ * 
+ *     Fallback time zone of the user, in the form of a valid IANA tzdatabase identifier (e.g., `Europe/London` or `America/Los_Angeles`).
+ *     Used when pulling data from sources that are completely time zone agnostic (e.g., all time is relative to UTC clock, without any time zone attributions on data points).
+ *     
+**/
+export class TeamUserFallbackTimeZone extends SpeakeasyBase {
+  @SpeakeasyMetadata({ data: "json, name=id" })
+  id: string;
+
+  @SpeakeasyMetadata({ data: "json, name=source_slug" })
+  sourceSlug: string;
+
+  @SpeakeasyMetadata({ data: "json, name=updated_at" })
+  updatedAt: Date;
+}
+
 export class TeamUser extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "json, name=client_user_id" })
   clientUserId: string;
@@ -13,7 +31,7 @@ export class TeamUser extends SpeakeasyBase {
   createdOn: Date;
 
   @SpeakeasyMetadata({ data: "json, name=fallback_time_zone" })
-  fallbackTimeZone?: string;
+  fallbackTimeZone?: TeamUserFallbackTimeZone;
 
   @SpeakeasyMetadata({ data: "json, name=id" })
   id: string;

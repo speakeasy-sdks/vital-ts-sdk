@@ -1,9 +1,16 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 
 export enum OrderV2StatusEnum {
+    ReceivedWalkInTestOrdered = "received.walk_in_test.ordered",
     ReceivedWalkInTestRequisitionCreated = "received.walk_in_test.requisition_created",
-    CompletedWalkInTestOrderCompleted = "completed.walk_in_test.order_completed",
+    CompletedWalkInTestCompleted = "completed.walk_in_test.completed",
     FailedWalkInTestSampleError = "failed.walk_in_test.sample_error",
+    ReceivedAtHomePhlebotomyOrdered = "received.at_home_phlebotomy.ordered",
+    ReceivedAtHomePhlebotomyRequisitionCreated = "received.at_home_phlebotomy.requisition_created",
+    CollectingSampleAtHomePhlebotomyAppointmentScheduled = "collecting_sample.at_home_phlebotomy.appointment_scheduled",
+    CollectingSampleAtHomePhlebotomyDrawCompleted = "collecting_sample.at_home_phlebotomy.draw_completed",
+    CompletedAtHomePhlebotomyCompleted = "completed.at_home_phlebotomy.completed",
+    CancelledAtHomePhlebotomyCancelled = "cancelled.at_home_phlebotomy.cancelled",
     ReceivedTestkitOrdered = "received.testkit.ordered",
     ReceivedTestkitRequisitionCreated = "received.testkit.requisition_created",
     CollectingSampleTestkitTransitCustomer = "collecting_sample.testkit.transit_customer",

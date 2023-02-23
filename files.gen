@@ -99,7 +99,6 @@ src/sdk/models/operations/getsvixwebhookurlv2teamsvixurlget.ts
 src/sdk/models/operations/getteamconfigv2teamlinkconfigget.ts
 src/sdk/models/operations/getteamusercountv2teamteamiduserscountget.ts
 src/sdk/models/operations/getteamv2teamteamidget.ts
-src/sdk/models/operations/migrateteamv2teamteamidadminmigratepost.ts
 src/sdk/models/operations/rotateapikeyv2teamteamidapikeyapikeyidrotatepatch.ts
 src/sdk/models/operations/searchteamusersbyuuidorclientuseridv2teamuserssearchget.ts
 src/sdk/models/operations/updateapikeylabelv2teamteamidapikeyapikeyidpatch.ts
@@ -187,6 +186,8 @@ src/sdk/models/shared/clientfacingwalkinorderdetails.ts
 src/sdk/models/shared/clientfacingwalkintestorder.ts
 src/sdk/models/shared/clientfacingtestkitorderdetails.ts
 src/sdk/models/shared/clientfacingtestkitorder.ts
+src/sdk/models/shared/clientfacingathomephlebotomyorderdetails.ts
+src/sdk/models/shared/clientfacingathomephlebotomyorder.ts
 src/sdk/models/shared/createorderrequestcompatible.ts
 src/sdk/models/shared/relatedperson.ts
 src/sdk/models/shared/contactpoint.ts
@@ -288,8 +289,6 @@ src/sdk/models/shared/connectedsourceclientfacingredacted.ts
 src/sdk/models/shared/teamcreate.ts
 src/sdk/models/shared/clientfacingteam.ts
 src/sdk/models/shared/clientfacingapikey.ts
-src/sdk/models/shared/migratepayload.ts
-src/sdk/models/shared/dbenvironment.ts
 src/sdk/models/shared/clientfacinguser.ts
 src/sdk/models/shared/updateapikeybody.ts
 src/sdk/models/shared/teamupdate.ts

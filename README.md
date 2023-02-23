@@ -166,7 +166,6 @@ sdk.dataWebhook.deregisterGarminV2DataWebhookDeregisterGarminPost(req).then((res
 * `getTeamConfigV2TeamLinkConfigGet` - Get Team Config
 * `getTeamUserCountV2TeamTeamIdUsersCountGet` - Get Team User Count
 * `getTeamV2TeamTeamIdGet` - Get Team
-* `migrateTeamV2TeamTeamIdAdminMigratePost` - Migrate Team
 * `rotateApiKeyV2TeamTeamIdApikeyApiKeyIdRotatePatch` - Rotate Api Key
 * `searchTeamUsersByUuidOrClientUserIdV2TeamUsersSearchGet` - Search Team Users By Uuid Or Client User Id
 * `updateApiKeyLabelV2TeamTeamIdApikeyApiKeyIdPatch` - Update Api Key Label
