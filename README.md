@@ -42,9 +42,13 @@ production:`https://auth.tryvital.io/oauth/token`
 ## SDK Example Usage
 <!-- Start SDK Example Usage -->
 ```typescript
-import { Vital, withSecurity} from "@vital/sdk";
-import { DeregisterGarminV2DataWebhookDeregisterGarminPostRequest, DeregisterGarminV2DataWebhookDeregisterGarminPostResponse } from "@vital/sdk/src/sdk/models/operations";
+import {
+  DeregisterGarminV2DataWebhookDeregisterGarminPostRequest,
+  DeregisterGarminV2DataWebhookDeregisterGarminPostResponse 
+} from "@vital/sdk/dist/sdk/models/operations";
+
 import { AxiosError } from "axios";
+import { Vital } from "@vital/sdk";
 
 
 const sdk = new Vital();
