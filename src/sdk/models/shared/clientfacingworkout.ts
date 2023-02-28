@@ -1,4 +1,5 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose, Transform, Type } from "class-transformer";
 
 
 // ClientFacingWorkoutProvider
@@ -6,13 +7,16 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
  * Source the data has come from.
 **/
 export class ClientFacingWorkoutProvider extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=logo" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "logo" })
   logo: string;
 
-  @SpeakeasyMetadata({ data: "json, name=name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "name" })
   name: string;
 
-  @SpeakeasyMetadata({ data: "json, name=slug" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "slug" })
   slug: string;
 }
 
@@ -21,95 +25,130 @@ export class ClientFacingWorkoutProvider extends SpeakeasyBase {
  * Sport's name
 **/
 export class ClientFacingWorkoutClientFacingSport extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "id" })
   id: number;
 
-  @SpeakeasyMetadata({ data: "json, name=name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "name" })
   name: string;
 
-  @SpeakeasyMetadata({ data: "json, name=slug" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "slug" })
   slug: string;
 }
 
 export class ClientFacingWorkout extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=average_hr" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "average_hr" })
   averageHr?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=average_speed" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "average_speed" })
   averageSpeed?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=average_watts" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "average_watts" })
   averageWatts?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=calendar_date" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "calendar_date" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   calendarDate: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=calories" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "calories" })
   calories?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=device_watts" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "device_watts" })
   deviceWatts?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=distance" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "distance" })
   distance?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=elev_high" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "elev_high" })
   elevHigh?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=elev_low" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "elev_low" })
   elevLow?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=hr_zones" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "hr_zones" })
   hrZones?: number[];
 
-  @SpeakeasyMetadata({ data: "json, name=id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "id" })
   id: string;
 
-  @SpeakeasyMetadata({ data: "json, name=map" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "map" })
   map?: Record<string, any>;
 
-  @SpeakeasyMetadata({ data: "json, name=max_hr" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "max_hr" })
   maxHr?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=max_speed" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "max_speed" })
   maxSpeed?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=max_watts" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "max_watts" })
   maxWatts?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=moving_time" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "moving_time" })
   movingTime?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=provider_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "provider_id" })
   providerId: string;
 
-  @SpeakeasyMetadata({ data: "json, name=source" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "source" })
+  @Type(() => ClientFacingWorkoutProvider)
   source: ClientFacingWorkoutProvider;
 
-  @SpeakeasyMetadata({ data: "json, name=sport" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "sport" })
+  @Type(() => ClientFacingWorkoutClientFacingSport)
   sport?: ClientFacingWorkoutClientFacingSport;
 
-  @SpeakeasyMetadata({ data: "json, name=time_end" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "time_end" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   timeEnd: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=time_start" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "time_start" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   timeStart: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=timezone_offset" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "timezone_offset" })
   timezoneOffset?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=title" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "title" })
   title?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=total_elevation_gain" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "total_elevation_gain" })
   totalElevationGain?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=user_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "user_id" })
   userId: string;
 
-  @SpeakeasyMetadata({ data: "json, name=user_key" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "user_key" })
   userKey?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=weighted_average_watts" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "weighted_average_watts" })
   weightedAverageWatts?: number;
 }

@@ -1,21 +1,27 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { StatusTEnum } from "./statustenum";
 import { WebhookDispositionEnum } from "./webhookdispositionenum";
+import { Expose } from "class-transformer";
 
 
 export class WebhookStatusChangeDataData extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=clientReferenceId" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "clientReferenceId" })
   clientReferenceId: string;
 
-  @SpeakeasyMetadata({ data: "json, name=consultId" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "consultId" })
   consultId: string;
 
-  @SpeakeasyMetadata({ data: "json, name=disposition" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "disposition" })
   disposition?: WebhookDispositionEnum;
 
-  @SpeakeasyMetadata({ data: "json, name=newStatus" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "newStatus" })
   newStatus: StatusTEnum;
 
-  @SpeakeasyMetadata({ data: "json, name=previousStatus" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "previousStatus" })
   previousStatus?: StatusTEnum;
 }

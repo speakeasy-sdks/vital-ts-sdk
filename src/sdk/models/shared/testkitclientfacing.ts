@@ -1,26 +1,35 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { MarkerClientFacing } from "./markerclientfacing";
+import { Expose, Type } from "class-transformer";
 
 
 export class TestkitClientFacing extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=description" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "description" })
   description: string;
 
-  @SpeakeasyMetadata({ data: "json, name=id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "id" })
   id: string;
 
-  @SpeakeasyMetadata({ data: "json, name=markers", elemType: MarkerClientFacing })
+  @SpeakeasyMetadata({ elemType: MarkerClientFacing })
+  @Expose({ name: "markers" })
+  @Type(() => MarkerClientFacing)
   markers?: MarkerClientFacing[];
 
-  @SpeakeasyMetadata({ data: "json, name=name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "name" })
   name: string;
 
-  @SpeakeasyMetadata({ data: "json, name=price" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "price" })
   price?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=turnaround_time_lower" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "turnaround_time_lower" })
   turnaroundTimeLower?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=turnaround_time_upper" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "turnaround_time_upper" })
   turnaroundTimeUpper?: number;
 }

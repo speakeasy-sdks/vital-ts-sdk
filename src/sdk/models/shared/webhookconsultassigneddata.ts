@@ -1,13 +1,17 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose } from "class-transformer";
 
 
 export class WebhookConsultAssignedData extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=clientReferenceId" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "clientReferenceId" })
   clientReferenceId: string;
 
-  @SpeakeasyMetadata({ data: "json, name=clinicianId" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "clinicianId" })
   clinicianId: string;
 
-  @SpeakeasyMetadata({ data: "json, name=consultId" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "consultId" })
   consultId: string;
 }

@@ -1,5 +1,6 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { ConnectedSourceClientFacing } from "./connectedsourceclientfacing";
+import { Expose, Transform, Type } from "class-transformer";
 
 
 // TeamUserFallbackTimeZone
@@ -10,32 +11,45 @@ import { ConnectedSourceClientFacing } from "./connectedsourceclientfacing";
  *     
 **/
 export class TeamUserFallbackTimeZone extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "id" })
   id: string;
 
-  @SpeakeasyMetadata({ data: "json, name=source_slug" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "source_slug" })
   sourceSlug: string;
 
-  @SpeakeasyMetadata({ data: "json, name=updated_at" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "updated_at" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   updatedAt: Date;
 }
 
 export class TeamUser extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=client_user_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "client_user_id" })
   clientUserId: string;
 
-  @SpeakeasyMetadata({ data: "json, name=connected_sources", elemType: ConnectedSourceClientFacing })
+  @SpeakeasyMetadata({ elemType: ConnectedSourceClientFacing })
+  @Expose({ name: "connected_sources" })
+  @Type(() => ConnectedSourceClientFacing)
   connectedSources: ConnectedSourceClientFacing[];
 
-  @SpeakeasyMetadata({ data: "json, name=created_on" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "created_on" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   createdOn: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=fallback_time_zone" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "fallback_time_zone" })
+  @Type(() => TeamUserFallbackTimeZone)
   fallbackTimeZone?: TeamUserFallbackTimeZone;
 
-  @SpeakeasyMetadata({ data: "json, name=id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "id" })
   id: string;
 
-  @SpeakeasyMetadata({ data: "json, name=team_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "team_id" })
   teamId: string;
 }

@@ -1,17 +1,22 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { ProvidersEnum } from "./providersenum";
+import { Expose } from "class-transformer";
 
 
 export class LinkTokenExchange extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=filter_on_providers" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "filter_on_providers" })
   filterOnProviders?: ProvidersEnum[];
 
-  @SpeakeasyMetadata({ data: "json, name=provider" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "provider" })
   provider?: ProvidersEnum;
 
-  @SpeakeasyMetadata({ data: "json, name=redirect_url" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "redirect_url" })
   redirectUrl?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=user_key" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "user_key" })
   userKey: string;
 }

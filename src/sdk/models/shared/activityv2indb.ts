@@ -1,29 +1,40 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { ClientFacingSource } from "./clientfacingsource";
+import { Expose, Transform, Type } from "class-transformer";
 
 
 export class ActivityV2InDB extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=data" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "data" })
   data?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "id" })
   id: string;
 
-  @SpeakeasyMetadata({ data: "json, name=priority_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "priority_id" })
   priorityId: number;
 
-  @SpeakeasyMetadata({ data: "json, name=provider_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "provider_id" })
   providerId: string;
 
-  @SpeakeasyMetadata({ data: "json, name=source" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "source" })
+  @Type(() => ClientFacingSource)
   source: ClientFacingSource;
 
-  @SpeakeasyMetadata({ data: "json, name=source_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "source_id" })
   sourceId: number;
 
-  @SpeakeasyMetadata({ data: "json, name=timestamp" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "timestamp" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   timestamp: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=user_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "user_id" })
   userId: string;
 }

@@ -1,6 +1,8 @@
 import * as utils from "../internal/utils";
 import * as operations from "./models/operations";
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse, ParamsSerializerOptions } from "axios";
+import * as shared from "./models/shared";
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { plainToInstance } from "class-transformer";
 
 export class Summary {
   _defaultClient: AxiosInstance;
@@ -36,19 +38,13 @@ export class Summary {
     const url: string = utils.generateURL(baseURL, "/v2/summary/meal/{user_id}", req.pathParams);
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -59,12 +55,20 @@ export class Summary {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.clientFacingMealResponse = httpRes?.data;
+              res.clientFacingMealResponse = plainToInstance(
+                shared.ClientFacingMealResponse,
+                httpRes?.data as shared.ClientFacingMealResponse,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -91,19 +95,13 @@ export class Summary {
     const url: string = utils.generateURL(baseURL, "/v2/summary/activity/{user_id}/raw", req.pathParams);
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -114,12 +112,20 @@ export class Summary {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.rawActivity = httpRes?.data;
+              res.rawActivity = plainToInstance(
+                shared.RawActivity,
+                httpRes?.data as shared.RawActivity,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -146,19 +152,13 @@ export class Summary {
     const url: string = utils.generateURL(baseURL, "/v2/summary/activity/{user_id}", req.pathParams);
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -169,12 +169,20 @@ export class Summary {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.clientActivityResponse = httpRes?.data;
+              res.clientActivityResponse = plainToInstance(
+                shared.ClientActivityResponse,
+                httpRes?.data as shared.ClientActivityResponse,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -201,19 +209,13 @@ export class Summary {
     const url: string = utils.generateURL(baseURL, "/v2/summary/body/{user_id}/raw", req.pathParams);
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -224,12 +226,20 @@ export class Summary {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.rawBody = httpRes?.data;
+              res.rawBody = plainToInstance(
+                shared.RawBody,
+                httpRes?.data as shared.RawBody,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -256,19 +266,13 @@ export class Summary {
     const url: string = utils.generateURL(baseURL, "/v2/summary/body/{user_id}", req.pathParams);
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -279,12 +283,20 @@ export class Summary {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.clientBodyResponse = httpRes?.data;
+              res.clientBodyResponse = plainToInstance(
+                shared.ClientBodyResponse,
+                httpRes?.data as shared.ClientBodyResponse,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -311,19 +323,13 @@ export class Summary {
     const url: string = utils.generateURL(baseURL, "/v2/summary/devices/{user_id}/raw", req.pathParams);
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -334,12 +340,20 @@ export class Summary {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.rawDevices = httpRes?.data;
+              res.rawDevices = plainToInstance(
+                shared.RawDevices,
+                httpRes?.data as shared.RawDevices,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -366,19 +380,13 @@ export class Summary {
     const url: string = utils.generateURL(baseURL, "/v2/summary/profile/{user_id}/raw", req.pathParams);
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -389,12 +397,20 @@ export class Summary {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.rawProfile = httpRes?.data;
+              res.rawProfile = plainToInstance(
+                shared.RawProfile,
+                httpRes?.data as shared.RawProfile,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -421,19 +437,13 @@ export class Summary {
     const url: string = utils.generateURL(baseURL, "/v2/summary/profile/{user_id}", req.pathParams);
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -444,12 +454,20 @@ export class Summary {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.clientFacingProfile = httpRes?.data;
+              res.clientFacingProfile = plainToInstance(
+                shared.ClientFacingProfile,
+                httpRes?.data as shared.ClientFacingProfile,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -476,19 +494,13 @@ export class Summary {
     const url: string = utils.generateURL(baseURL, "/v2/summary/sleep/{user_id}/raw", req.pathParams);
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -499,12 +511,20 @@ export class Summary {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.rawSleep = httpRes?.data;
+              res.rawSleep = plainToInstance(
+                shared.RawSleep,
+                httpRes?.data as shared.RawSleep,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -531,19 +551,13 @@ export class Summary {
     const url: string = utils.generateURL(baseURL, "/v2/summary/sleep/{user_id}/stream", req.pathParams);
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -554,12 +568,20 @@ export class Summary {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.clientSleepResponse = httpRes?.data;
+              res.clientSleepResponse = plainToInstance(
+                shared.ClientSleepResponse,
+                httpRes?.data as shared.ClientSleepResponse,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -586,19 +608,13 @@ export class Summary {
     const url: string = utils.generateURL(baseURL, "/v2/summary/sleep/{user_id}", req.pathParams);
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -609,12 +625,20 @@ export class Summary {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.clientSleepResponse = httpRes?.data;
+              res.clientSleepResponse = plainToInstance(
+                shared.ClientSleepResponse,
+                httpRes?.data as shared.ClientSleepResponse,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -641,19 +665,13 @@ export class Summary {
     const url: string = utils.generateURL(baseURL, "/v2/summary/workouts/{user_id}/raw", req.pathParams);
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -664,12 +682,20 @@ export class Summary {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.rawWorkout = httpRes?.data;
+              res.rawWorkout = plainToInstance(
+                shared.RawWorkout,
+                httpRes?.data as shared.RawWorkout,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -696,19 +722,13 @@ export class Summary {
     const url: string = utils.generateURL(baseURL, "/v2/summary/workouts/{user_id}", req.pathParams);
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -719,12 +739,20 @@ export class Summary {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.clientWorkoutResponse = httpRes?.data;
+              res.clientWorkoutResponse = plainToInstance(
+                shared.ClientWorkoutResponse,
+                httpRes?.data as shared.ClientWorkoutResponse,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -759,6 +787,7 @@ export class Summary {
     }
     
     const client: AxiosInstance = this._defaultClient!;
+    
     const headers = {...utils.getHeadersFromRequest(req.headers), ...reqBodyHeaders, ...config?.headers};
     if (reqBody == null || Object.keys(reqBody).length === 0) throw new Error("request body is required");
     
@@ -783,7 +812,11 @@ export class Summary {
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -818,6 +851,7 @@ export class Summary {
     }
     
     const client: AxiosInstance = this._defaultClient!;
+    
     const headers = {...utils.getHeadersFromRequest(req.headers), ...reqBodyHeaders, ...config?.headers};
     if (reqBody == null || Object.keys(reqBody).length === 0) throw new Error("request body is required");
     
@@ -842,7 +876,11 @@ export class Summary {
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -877,6 +915,7 @@ export class Summary {
     }
     
     const client: AxiosInstance = this._defaultClient!;
+    
     const headers = {...utils.getHeadersFromRequest(req.headers), ...reqBodyHeaders, ...config?.headers};
     if (reqBody == null || Object.keys(reqBody).length === 0) throw new Error("request body is required");
     
@@ -901,7 +940,11 @@ export class Summary {
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -936,6 +979,7 @@ export class Summary {
     }
     
     const client: AxiosInstance = this._defaultClient!;
+    
     const headers = {...utils.getHeadersFromRequest(req.headers), ...reqBodyHeaders, ...config?.headers};
     if (reqBody == null || Object.keys(reqBody).length === 0) throw new Error("request body is required");
     
@@ -960,7 +1004,11 @@ export class Summary {
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -995,6 +1043,7 @@ export class Summary {
     }
     
     const client: AxiosInstance = this._defaultClient!;
+    
     const headers = {...utils.getHeadersFromRequest(req.headers), ...reqBodyHeaders, ...config?.headers};
     if (reqBody == null || Object.keys(reqBody).length === 0) throw new Error("request body is required");
     
@@ -1019,7 +1068,11 @@ export class Summary {
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }

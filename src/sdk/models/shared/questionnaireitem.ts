@@ -1,19 +1,25 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose } from "class-transformer";
 
 
 export class QuestionnaireItem extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=answer" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "answer" })
   answer: any[];
 
-  @SpeakeasyMetadata({ data: "json, name=linkId" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "linkId" })
   linkId: any;
 
-  @SpeakeasyMetadata({ data: "json, name=size" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "size" })
   size?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=title" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "title" })
   title?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=url" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "url" })
   url?: string;
 }

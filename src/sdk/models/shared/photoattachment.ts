@@ -1,14 +1,18 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { PhotoTitleEnum } from "./phototitleenum";
+import { Expose } from "class-transformer";
 
 
 export class PhotoAttachment extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=contentType" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "contentType" })
   contentType?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=title" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "title" })
   title?: PhotoTitleEnum;
 
-  @SpeakeasyMetadata({ data: "json, name=url" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "url" })
   url?: string;
 }

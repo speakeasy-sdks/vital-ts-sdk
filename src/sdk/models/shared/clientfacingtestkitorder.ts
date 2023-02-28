@@ -1,4 +1,5 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose, Transform, Type } from "class-transformer";
 
 
 // ClientFacingTestkitOrderClientFacingShipment
@@ -8,28 +9,36 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
  * To be used as part of a ClientFacingTestkitOrder.
 **/
 export class ClientFacingTestkitOrderClientFacingShipment extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "id" })
   id: string;
 
-  @SpeakeasyMetadata({ data: "json, name=inbound_courier" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "inbound_courier" })
   inboundCourier?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=inbound_tracking_number" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "inbound_tracking_number" })
   inboundTrackingNumber?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=inbound_tracking_url" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "inbound_tracking_url" })
   inboundTrackingUrl?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=notes" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "notes" })
   notes?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=outbound_courier" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "outbound_courier" })
   outboundCourier?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=outbound_tracking_number" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "outbound_tracking_number" })
   outboundTrackingNumber?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=outbound_tracking_url" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "outbound_tracking_url" })
   outboundTrackingUrl?: string;
 }
 
@@ -40,15 +49,22 @@ export class ClientFacingTestkitOrderClientFacingShipment extends SpeakeasyBase 
  * To be used as part of a ClientFacingOrder.
 **/
 export class ClientFacingTestkitOrder extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=created_at" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "created_at" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   createdAt: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "id" })
   id: string;
 
-  @SpeakeasyMetadata({ data: "json, name=shipment" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "shipment" })
+  @Type(() => ClientFacingTestkitOrderClientFacingShipment)
   shipment?: ClientFacingTestkitOrderClientFacingShipment;
 
-  @SpeakeasyMetadata({ data: "json, name=updated_at" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "updated_at" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   updatedAt: Date;
 }

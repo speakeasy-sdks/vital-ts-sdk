@@ -1,4 +1,5 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose, Transform, Type } from "class-transformer";
 
 
 // ClientFacingActivityProvider
@@ -6,62 +7,84 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
  * Source the data has come from.
 **/
 export class ClientFacingActivityProvider extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=logo" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "logo" })
   logo: string;
 
-  @SpeakeasyMetadata({ data: "json, name=name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "name" })
   name: string;
 
-  @SpeakeasyMetadata({ data: "json, name=slug" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "slug" })
   slug: string;
 }
 
 export class ClientFacingActivity extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=calendar_date" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "calendar_date" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   calendarDate: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=calories_active" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "calories_active" })
   caloriesActive?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=calories_total" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "calories_total" })
   caloriesTotal?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=daily_movement" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "daily_movement" })
   dailyMovement?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=date" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "date" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   date: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=floors_climbed" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "floors_climbed" })
   floorsClimbed?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=high" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "high" })
   high?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "id" })
   id: string;
 
-  @SpeakeasyMetadata({ data: "json, name=low" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "low" })
   low?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=medium" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "medium" })
   medium?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=source" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "source" })
+  @Type(() => ClientFacingActivityProvider)
   source: ClientFacingActivityProvider;
 
-  @SpeakeasyMetadata({ data: "json, name=steps" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "steps" })
   steps?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=time_zone" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "time_zone" })
   timeZone?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=timezone_offset" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "timezone_offset" })
   timezoneOffset?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=user_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "user_id" })
   userId: string;
 
-  @SpeakeasyMetadata({ data: "json, name=user_key" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "user_key" })
   userKey?: string;
 }

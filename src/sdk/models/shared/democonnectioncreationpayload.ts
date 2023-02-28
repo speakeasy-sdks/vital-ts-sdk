@@ -1,11 +1,14 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { ProvidersEnum } from "./providersenum";
+import { Expose } from "class-transformer";
 
 
 export class DemoConnectionCreationPayload extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=provider" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "provider" })
   provider: ProvidersEnum;
 
-  @SpeakeasyMetadata({ data: "json, name=user_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "user_id" })
   userId: string;
 }

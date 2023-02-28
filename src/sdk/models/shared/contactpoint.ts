@@ -1,13 +1,17 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose } from "class-transformer";
 
 
 export class ContactPoint extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=system" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "system" })
   system: string;
 
-  @SpeakeasyMetadata({ data: "json, name=use" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "use" })
   use?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=value" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "value" })
   value: string;
 }

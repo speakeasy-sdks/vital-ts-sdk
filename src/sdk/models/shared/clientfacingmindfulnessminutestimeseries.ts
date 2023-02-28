@@ -1,19 +1,26 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose, Transform } from "class-transformer";
 
 
 export class ClientFacingMindfulnessMinutesTimeseries extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "id" })
   id?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=timestamp" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "timestamp" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   timestamp: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=type" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "type" })
   type?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=unit" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "unit" })
   unit: string;
 
-  @SpeakeasyMetadata({ data: "json, name=value" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "value" })
   value: number;
 }

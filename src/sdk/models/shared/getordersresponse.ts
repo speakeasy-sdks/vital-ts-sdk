@@ -1,17 +1,23 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { VitalCoreSchemasDbSchemasLabTestOrderv2ClientFacingOrder } from "./vitalcoreschemasdbschemaslabtestorderv2clientfacingorder";
+import { Expose, Type } from "class-transformer";
 
 
 export class GetOrdersResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=orders", elemType: VitalCoreSchemasDbSchemasLabTestOrderv2ClientFacingOrder })
+  @SpeakeasyMetadata({ elemType: VitalCoreSchemasDbSchemasLabTestOrderv2ClientFacingOrder })
+  @Expose({ name: "orders" })
+  @Type(() => VitalCoreSchemasDbSchemasLabTestOrderv2ClientFacingOrder)
   orders: VitalCoreSchemasDbSchemasLabTestOrderv2ClientFacingOrder[];
 
-  @SpeakeasyMetadata({ data: "json, name=page" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "page" })
   page: number;
 
-  @SpeakeasyMetadata({ data: "json, name=size" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "size" })
   size: number;
 
-  @SpeakeasyMetadata({ data: "json, name=total" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "total" })
   total: number;
 }

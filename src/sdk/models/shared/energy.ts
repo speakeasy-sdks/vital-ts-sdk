@@ -1,13 +1,16 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose } from "class-transformer";
 
 export enum EnergyUnitEnum {
     Kcal = "kcal"
 }
 
 export class Energy extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=unit" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "unit" })
   unit: EnergyUnitEnum;
 
-  @SpeakeasyMetadata({ data: "json, name=value" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "value" })
   value: number;
 }

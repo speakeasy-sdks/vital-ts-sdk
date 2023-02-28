@@ -1,10 +1,14 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose, Transform } from "class-transformer";
 
 
 export class TimeseriesMetricPoint extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=date" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "date" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   date: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=value" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "value" })
   value: number;
 }

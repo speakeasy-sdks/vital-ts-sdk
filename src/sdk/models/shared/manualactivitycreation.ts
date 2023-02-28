@@ -1,23 +1,36 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { QuantitySample } from "./quantitysample";
+import { Expose, Type } from "class-transformer";
 
 
 export class ManualActivityCreation extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=active_energy_burned", elemType: QuantitySample })
+  @SpeakeasyMetadata({ elemType: QuantitySample })
+  @Expose({ name: "active_energy_burned" })
+  @Type(() => QuantitySample)
   activeEnergyBurned: QuantitySample[];
 
-  @SpeakeasyMetadata({ data: "json, name=basal_energy_burned", elemType: QuantitySample })
+  @SpeakeasyMetadata({ elemType: QuantitySample })
+  @Expose({ name: "basal_energy_burned" })
+  @Type(() => QuantitySample)
   basalEnergyBurned: QuantitySample[];
 
-  @SpeakeasyMetadata({ data: "json, name=distance_walking_running", elemType: QuantitySample })
+  @SpeakeasyMetadata({ elemType: QuantitySample })
+  @Expose({ name: "distance_walking_running" })
+  @Type(() => QuantitySample)
   distanceWalkingRunning: QuantitySample[];
 
-  @SpeakeasyMetadata({ data: "json, name=floors_climbed", elemType: QuantitySample })
+  @SpeakeasyMetadata({ elemType: QuantitySample })
+  @Expose({ name: "floors_climbed" })
+  @Type(() => QuantitySample)
   floorsClimbed: QuantitySample[];
 
-  @SpeakeasyMetadata({ data: "json, name=steps", elemType: QuantitySample })
+  @SpeakeasyMetadata({ elemType: QuantitySample })
+  @Expose({ name: "steps" })
+  @Type(() => QuantitySample)
   steps: QuantitySample[];
 
-  @SpeakeasyMetadata({ data: "json, name=vo2_max", elemType: QuantitySample })
+  @SpeakeasyMetadata({ elemType: QuantitySample })
+  @Expose({ name: "vo2_max" })
+  @Type(() => QuantitySample)
   vo2Max: QuantitySample[];
 }

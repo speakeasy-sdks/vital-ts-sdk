@@ -1,14 +1,19 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { ShipbobInventoryItem } from "./shipbobinventoryitem";
+import { Expose, Type } from "class-transformer";
 
 
 export class ShipbobProduct extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "id" })
   id: number;
 
-  @SpeakeasyMetadata({ data: "json, name=inventory_items", elemType: ShipbobInventoryItem })
+  @SpeakeasyMetadata({ elemType: ShipbobInventoryItem })
+  @Expose({ name: "inventory_items" })
+  @Type(() => ShipbobInventoryItem)
   inventoryItems: ShipbobInventoryItem[];
 
-  @SpeakeasyMetadata({ data: "json, name=reference_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "reference_id" })
   referenceId?: string;
 }

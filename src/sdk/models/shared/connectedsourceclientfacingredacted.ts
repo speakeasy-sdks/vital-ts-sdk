@@ -1,14 +1,19 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { ClientFacingSource } from "./clientfacingsource";
+import { Expose, Type } from "class-transformer";
 
 
 export class ConnectedSourceClientFacingRedacted extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "id" })
   id: string;
 
-  @SpeakeasyMetadata({ data: "json, name=provider_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "provider_id" })
   providerId?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=source" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "source" })
+  @Type(() => ClientFacingSource)
   source: ClientFacingSource;
 }

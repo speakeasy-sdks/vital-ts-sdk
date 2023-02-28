@@ -3,33 +3,45 @@ import { LabClientFacing } from "./labclientfacing";
 import { LabTestMethodEnum } from "./labtestmethodenum";
 import { LabTestSampleTypeEnum } from "./labtestsampletypeenum";
 import { MarkerClientFacing } from "./markerclientfacing";
+import { Expose, Type } from "class-transformer";
 
 
 export class ClientFacingLabTest extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "id" })
   id: string;
 
-  @SpeakeasyMetadata({ data: "json, name=is_active" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "is_active" })
   isActive: boolean;
 
-  @SpeakeasyMetadata({ data: "json, name=lab" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "lab" })
+  @Type(() => LabClientFacing)
   lab?: LabClientFacing;
 
-  @SpeakeasyMetadata({ data: "json, name=markers", elemType: MarkerClientFacing })
+  @SpeakeasyMetadata({ elemType: MarkerClientFacing })
+  @Expose({ name: "markers" })
+  @Type(() => MarkerClientFacing)
   markers?: MarkerClientFacing[];
 
-  @SpeakeasyMetadata({ data: "json, name=method" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "method" })
   method: LabTestMethodEnum;
 
-  @SpeakeasyMetadata({ data: "json, name=name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "name" })
   name: string;
 
-  @SpeakeasyMetadata({ data: "json, name=price" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "price" })
   price: number;
 
-  @SpeakeasyMetadata({ data: "json, name=sample_type" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "sample_type" })
   sampleType: LabTestSampleTypeEnum;
 
-  @SpeakeasyMetadata({ data: "json, name=slug" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "slug" })
   slug: string;
 }

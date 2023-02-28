@@ -1,6 +1,8 @@
 import * as utils from "../internal/utils";
 import * as operations from "./models/operations";
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse, ParamsSerializerOptions } from "axios";
+import * as shared from "./models/shared";
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { plainToInstance } from "class-transformer";
 
 export class User {
   _defaultClient: AxiosInstance;
@@ -34,19 +36,13 @@ export class User {
     const url: string = utils.generateURL(baseURL, "/v2/user/admin/webhook/{user_id}/{team_id}", req.pathParams);
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "post",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -62,7 +58,11 @@ export class User {
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -99,6 +99,7 @@ export class User {
     }
     
     const client: AxiosInstance = this._defaultClient!;
+    
     const headers = {...reqBodyHeaders, ...config?.headers};
     if (reqBody == null || Object.keys(reqBody).length === 0) throw new Error("request body is required");
     
@@ -118,12 +119,20 @@ export class User {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.clientFacingUserKey = httpRes?.data;
+              res.clientFacingUserKey = plainToInstance(
+                shared.ClientFacingUserKey,
+                httpRes?.data as shared.ClientFacingUserKey,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -149,6 +158,7 @@ export class User {
     
     const client: AxiosInstance = this._defaultClient!;
     
+    
     const r = client.request({
       url: url,
       method: "delete",
@@ -163,12 +173,20 @@ export class User {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.userSuccessResponse = httpRes?.data;
+              res.userSuccessResponse = plainToInstance(
+                shared.UserSuccessResponse,
+                httpRes?.data as shared.UserSuccessResponse,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -194,6 +212,7 @@ export class User {
     
     const client: AxiosInstance = this._defaultClient!;
     
+    
     const r = client.request({
       url: url,
       method: "delete",
@@ -208,12 +227,20 @@ export class User {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.userSuccessResponse = httpRes?.data;
+              res.userSuccessResponse = plainToInstance(
+                shared.UserSuccessResponse,
+                httpRes?.data as shared.UserSuccessResponse,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -241,6 +268,7 @@ export class User {
     
     const client: AxiosInstance = this._defaultClient!;
     
+    
     const r = client.request({
       url: url,
       method: "get",
@@ -255,12 +283,20 @@ export class User {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.responseGetConnectedProvidersV2UserProvidersUserIdGet = httpRes?.data;
+              res.responseGetConnectedProvidersV2UserProvidersUserIdGet = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -283,6 +319,7 @@ export class User {
     
     const client: AxiosInstance = this._defaultClient!;
     
+    
     const r = client.request({
       url: url,
       method: "get",
@@ -297,7 +334,11 @@ export class User {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.metricsResult = httpRes?.data;
+              res.metricsResult = plainToInstance(
+                shared.MetricsResult,
+                httpRes?.data as shared.MetricsResult,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -324,19 +365,13 @@ export class User {
     const url: string = baseURL.replace(/\/$/, "") + "/v2/user";
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -347,12 +382,20 @@ export class User {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.paginatedUsersResponse = httpRes?.data;
+              res.paginatedUsersResponse = plainToInstance(
+                shared.PaginatedUsersResponse,
+                httpRes?.data as shared.PaginatedUsersResponse,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -380,6 +423,7 @@ export class User {
     
     const client: AxiosInstance = this._defaultClient!;
     
+    
     const r = client.request({
       url: url,
       method: "get",
@@ -394,12 +438,20 @@ export class User {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.clientFacingUser = httpRes?.data;
+              res.clientFacingUser = plainToInstance(
+                shared.ClientFacingUser,
+                httpRes?.data as shared.ClientFacingUser,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -427,6 +479,7 @@ export class User {
     
     const client: AxiosInstance = this._defaultClient!;
     
+    
     const r = client.request({
       url: url,
       method: "get",
@@ -441,12 +494,20 @@ export class User {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.clientFacingUser = httpRes?.data;
+              res.clientFacingUser = plainToInstance(
+                shared.ClientFacingUser,
+                httpRes?.data as shared.ClientFacingUser,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -481,6 +542,7 @@ export class User {
     }
     
     const client: AxiosInstance = this._defaultClient!;
+    
     const headers = {...reqBodyHeaders, ...config?.headers};
     if (reqBody == null || Object.keys(reqBody).length === 0) throw new Error("request body is required");
     
@@ -502,7 +564,11 @@ export class User {
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -530,6 +596,7 @@ export class User {
     
     const client: AxiosInstance = this._defaultClient!;
     
+    
     const r = client.request({
       url: url,
       method: "post",
@@ -544,17 +611,29 @@ export class User {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.userRefreshSuccessResponse = httpRes?.data;
+              res.userRefreshSuccessResponse = plainToInstance(
+                shared.UserRefreshSuccessResponse,
+                httpRes?.data as shared.UserRefreshSuccessResponse,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 400:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.userRefreshErrorResponse = httpRes?.data;
+              res.userRefreshErrorResponse = plainToInstance(
+                shared.UserRefreshErrorResponse,
+                httpRes?.data as shared.UserRefreshErrorResponse,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }

@@ -1,20 +1,27 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { ClientFacingSource } from "./clientfacingsource";
+import { Expose, Type } from "class-transformer";
 
 
 export class ClientFacingProfile extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=height" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "height" })
   height?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "id" })
   id: string;
 
-  @SpeakeasyMetadata({ data: "json, name=source" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "source" })
+  @Type(() => ClientFacingSource)
   source?: ClientFacingSource;
 
-  @SpeakeasyMetadata({ data: "json, name=user_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "user_id" })
   userId: string;
 
-  @SpeakeasyMetadata({ data: "json, name=user_key" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "user_key" })
   userKey?: string;
 }

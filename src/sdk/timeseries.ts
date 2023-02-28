@@ -1,6 +1,8 @@
 import * as utils from "../internal/utils";
 import * as operations from "./models/operations";
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse, ParamsSerializerOptions } from "axios";
+import * as shared from "./models/shared";
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { plainToInstance } from "class-transformer";
 
 export class Timeseries {
   _defaultClient: AxiosInstance;
@@ -36,19 +38,13 @@ export class Timeseries {
     const url: string = utils.generateURL(baseURL, "/v2/timeseries/{user_id}/blood_pressure", req.pathParams);
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -59,12 +55,20 @@ export class Timeseries {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.clientFacingBloodPressureTimeseries = httpRes?.data;
+              res.clientFacingBloodPressureTimeseries = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -91,19 +95,13 @@ export class Timeseries {
     const url: string = utils.generateURL(baseURL, "/v2/timeseries/{user_id}/{resource}", req.pathParams);
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -114,12 +112,20 @@ export class Timeseries {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.clientFacingTimeseries = httpRes?.data;
+              res.clientFacingTimeseries = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -146,19 +152,13 @@ export class Timeseries {
     const url: string = utils.generateURL(baseURL, "/v2/timeseries/{user_id}/blood_oxygen", req.pathParams);
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -169,12 +169,20 @@ export class Timeseries {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.clientFacingBloodOxygenTimeseries = httpRes?.data;
+              res.clientFacingBloodOxygenTimeseries = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -201,19 +209,13 @@ export class Timeseries {
     const url: string = utils.generateURL(baseURL, "/v2/timeseries/{user_id}/caffeine", req.pathParams);
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -224,12 +226,20 @@ export class Timeseries {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.clientFacingCaffeineTimeseries = httpRes?.data;
+              res.clientFacingCaffeineTimeseries = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -256,19 +266,13 @@ export class Timeseries {
     const url: string = utils.generateURL(baseURL, "/v2/timeseries/{user_id}/cholesterol", req.pathParams);
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -279,12 +283,20 @@ export class Timeseries {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.clientFacingCholesterolTimeseries = httpRes?.data;
+              res.clientFacingCholesterolTimeseries = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -311,19 +323,13 @@ export class Timeseries {
     const url: string = utils.generateURL(baseURL, "/v2/timeseries/{user_id}/cholesterol/hdl", req.pathParams);
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -334,12 +340,20 @@ export class Timeseries {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.clientFacingCholesterolTimeseries = httpRes?.data;
+              res.clientFacingCholesterolTimeseries = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -366,19 +380,13 @@ export class Timeseries {
     const url: string = utils.generateURL(baseURL, "/v2/timeseries/{user_id}/cholesterol/ldl", req.pathParams);
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -389,12 +397,20 @@ export class Timeseries {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.clientFacingCholesterolTimeseries = httpRes?.data;
+              res.clientFacingCholesterolTimeseries = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -421,19 +437,13 @@ export class Timeseries {
     const url: string = utils.generateURL(baseURL, "/v2/timeseries/{user_id}/cholesterol/total", req.pathParams);
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -444,12 +454,20 @@ export class Timeseries {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.clientFacingCholesterolTimeseries = httpRes?.data;
+              res.clientFacingCholesterolTimeseries = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -476,19 +494,13 @@ export class Timeseries {
     const url: string = utils.generateURL(baseURL, "/v2/timeseries/{user_id}/cholesterol/triglycerides", req.pathParams);
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -499,12 +511,20 @@ export class Timeseries {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.clientFacingCholesterolTimeseries = httpRes?.data;
+              res.clientFacingCholesterolTimeseries = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -531,19 +551,13 @@ export class Timeseries {
     const url: string = utils.generateURL(baseURL, "/v2/timeseries/{user_id}/glucose", req.pathParams);
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -554,12 +568,20 @@ export class Timeseries {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.clientFacingGlucoseTimeseries = httpRes?.data;
+              res.clientFacingGlucoseTimeseries = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -586,19 +608,13 @@ export class Timeseries {
     const url: string = utils.generateURL(baseURL, "/v2/timeseries/{user_id}/heartrate", req.pathParams);
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -609,12 +625,20 @@ export class Timeseries {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.clientFacingHeartRateTimeseries = httpRes?.data;
+              res.clientFacingHeartRateTimeseries = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -641,19 +665,13 @@ export class Timeseries {
     const url: string = utils.generateURL(baseURL, "/v2/timeseries/{user_id}/heartrate_variability", req.pathParams);
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -664,12 +682,20 @@ export class Timeseries {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.clientFacingHRVTimeseries = httpRes?.data;
+              res.clientFacingHRVTimeseries = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -696,19 +722,13 @@ export class Timeseries {
     const url: string = utils.generateURL(baseURL, "/v2/timeseries/{user_id}/hrv", req.pathParams);
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -719,12 +739,20 @@ export class Timeseries {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.clientFacingHRVTimeseries = httpRes?.data;
+              res.clientFacingHRVTimeseries = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -751,19 +779,13 @@ export class Timeseries {
     const url: string = utils.generateURL(baseURL, "/v2/timeseries/{user_id}/hypnogram", req.pathParams);
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -774,12 +796,20 @@ export class Timeseries {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.clientFacingHypnogramTimeseries = httpRes?.data;
+              res.clientFacingHypnogramTimeseries = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -806,19 +836,13 @@ export class Timeseries {
     const url: string = utils.generateURL(baseURL, "/v2/timeseries/{user_id}/ige", req.pathParams);
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -829,12 +853,20 @@ export class Timeseries {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.clientFacingIgeTimeseries = httpRes?.data;
+              res.clientFacingIgeTimeseries = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -861,19 +893,13 @@ export class Timeseries {
     const url: string = utils.generateURL(baseURL, "/v2/timeseries/{user_id}/igg", req.pathParams);
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -884,12 +910,20 @@ export class Timeseries {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.clientFacingIggTimeseries = httpRes?.data;
+              res.clientFacingIggTimeseries = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -916,19 +950,13 @@ export class Timeseries {
     const url: string = utils.generateURL(baseURL, "/v2/timeseries/{user_id}/mindfulness_minutes", req.pathParams);
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -939,12 +967,20 @@ export class Timeseries {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.clientFacingMindfulnessMinutesTimeseries = httpRes?.data;
+              res.clientFacingMindfulnessMinutesTimeseries = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -971,19 +1007,13 @@ export class Timeseries {
     const url: string = utils.generateURL(baseURL, "/v2/timeseries/{user_id}/respiratory_rate", req.pathParams);
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -994,12 +1024,20 @@ export class Timeseries {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.clientFacingRespiratoryRateTimeseries = httpRes?.data;
+              res.clientFacingRespiratoryRateTimeseries = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -1026,19 +1064,13 @@ export class Timeseries {
     const url: string = utils.generateURL(baseURL, "/v2/timeseries/{user_id}/steps", req.pathParams);
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -1049,12 +1081,20 @@ export class Timeseries {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.clientFacingStepsTimeseries = httpRes?.data;
+              res.clientFacingStepsTimeseries = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -1081,19 +1121,13 @@ export class Timeseries {
     const url: string = utils.generateURL(baseURL, "/v2/timeseries/{user_id}/water", req.pathParams);
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -1104,12 +1138,20 @@ export class Timeseries {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.clientFacingWaterTimeseries = httpRes?.data;
+              res.clientFacingWaterTimeseries = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -1137,6 +1179,7 @@ export class Timeseries {
     
     const client: AxiosInstance = this._defaultClient!;
     
+    
     const r = client.request({
       url: url,
       method: "get",
@@ -1151,12 +1194,20 @@ export class Timeseries {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.clientFacingSleepStream = httpRes?.data;
+              res.clientFacingSleepStream = plainToInstance(
+                shared.ClientFacingSleepStream,
+                httpRes?.data as shared.ClientFacingSleepStream,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -1182,6 +1233,7 @@ export class Timeseries {
     
     const client: AxiosInstance = this._defaultClient!;
     
+    
     const r = client.request({
       url: url,
       method: "get",
@@ -1196,12 +1248,20 @@ export class Timeseries {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.clientFacingStream = httpRes?.data;
+              res.clientFacingStream = plainToInstance(
+                shared.ClientFacingStream,
+                httpRes?.data as shared.ClientFacingStream,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -1236,6 +1296,7 @@ export class Timeseries {
     }
     
     const client: AxiosInstance = this._defaultClient!;
+    
     const headers = {...utils.getHeadersFromRequest(req.headers), ...reqBodyHeaders, ...config?.headers};
     if (reqBody == null || Object.keys(reqBody).length === 0) throw new Error("request body is required");
     
@@ -1260,7 +1321,11 @@ export class Timeseries {
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -1295,6 +1360,7 @@ export class Timeseries {
     }
     
     const client: AxiosInstance = this._defaultClient!;
+    
     const headers = {...utils.getHeadersFromRequest(req.headers), ...reqBodyHeaders, ...config?.headers};
     if (reqBody == null || Object.keys(reqBody).length === 0) throw new Error("request body is required");
     
@@ -1319,7 +1385,11 @@ export class Timeseries {
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }

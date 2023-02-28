@@ -1,13 +1,18 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose, Transform } from "class-transformer";
 
 
 export class ManualProfileCreation extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=biological_sex" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "biological_sex" })
   biologicalSex?: any;
 
-  @SpeakeasyMetadata({ data: "json, name=date_of_birth" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "date_of_birth" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   dateOfBirth?: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=height" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "height" })
   height?: number;
 }

@@ -1,18 +1,23 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { AuthTypeEnum } from "./authtypeenum";
 import { ProvidersEnum } from "./providersenum";
+import { Expose } from "class-transformer";
 
 
 export class PasswordAuthLink extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=auth_type" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "auth_type" })
   authType: AuthTypeEnum;
 
-  @SpeakeasyMetadata({ data: "json, name=password" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "password" })
   password: string;
 
-  @SpeakeasyMetadata({ data: "json, name=provider" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "provider" })
   provider: ProvidersEnum;
 
-  @SpeakeasyMetadata({ data: "json, name=username" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "username" })
   username: string;
 }

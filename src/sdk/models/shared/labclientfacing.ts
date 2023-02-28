@@ -1,19 +1,25 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose } from "class-transformer";
 
 
 export class LabClientFacing extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=city" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "city" })
   city: string;
 
-  @SpeakeasyMetadata({ data: "json, name=first_line_address" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "first_line_address" })
   firstLineAddress: string;
 
-  @SpeakeasyMetadata({ data: "json, name=name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "name" })
   name: string;
 
-  @SpeakeasyMetadata({ data: "json, name=slug" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "slug" })
   slug: string;
 
-  @SpeakeasyMetadata({ data: "json, name=zipcode" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "zipcode" })
   zipcode: string;
 }

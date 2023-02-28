@@ -1,29 +1,41 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { ClientFacingSource } from "./clientfacingsource";
+import { Expose, Transform, Type } from "class-transformer";
 
 
 export class ClientFacingBody extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=calendar_date" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "calendar_date" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   calendarDate: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=date" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "date" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   date: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=fat" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "fat" })
   fat?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "id" })
   id: string;
 
-  @SpeakeasyMetadata({ data: "json, name=source" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "source" })
+  @Type(() => ClientFacingSource)
   source: ClientFacingSource;
 
-  @SpeakeasyMetadata({ data: "json, name=user_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "user_id" })
   userId: string;
 
-  @SpeakeasyMetadata({ data: "json, name=user_key" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "user_key" })
   userKey?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=weight" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "weight" })
   weight?: number;
 }

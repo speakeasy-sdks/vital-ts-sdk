@@ -1,35 +1,50 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { QuantitySample } from "./quantitysample";
+import { Expose, Transform, Type } from "class-transformer";
 
 
 export class ManualWorkoutCreation extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=calories" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "calories" })
   calories: number;
 
-  @SpeakeasyMetadata({ data: "json, name=distance" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "distance" })
   distance: number;
 
-  @SpeakeasyMetadata({ data: "json, name=end_date" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "end_date" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   endDate: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=heart_rate", elemType: QuantitySample })
+  @SpeakeasyMetadata({ elemType: QuantitySample })
+  @Expose({ name: "heart_rate" })
+  @Type(() => QuantitySample)
   heartRate?: QuantitySample[];
 
-  @SpeakeasyMetadata({ data: "json, name=id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "id" })
   id: string;
 
-  @SpeakeasyMetadata({ data: "json, name=product_type" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "product_type" })
   productType?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=respiratory_rate", elemType: QuantitySample })
+  @SpeakeasyMetadata({ elemType: QuantitySample })
+  @Expose({ name: "respiratory_rate" })
+  @Type(() => QuantitySample)
   respiratoryRate?: QuantitySample[];
 
-  @SpeakeasyMetadata({ data: "json, name=source_bundle" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "source_bundle" })
   sourceBundle?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=sport" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "sport" })
   sport: string;
 
-  @SpeakeasyMetadata({ data: "json, name=start_date" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "start_date" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   startDate: Date;
 }

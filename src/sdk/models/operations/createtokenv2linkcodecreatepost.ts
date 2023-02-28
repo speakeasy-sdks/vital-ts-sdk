@@ -1,9 +1,10 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import * as shared from "../shared";
+import { Transform, Type } from "class-transformer";
 
 
 export class CreateTokenV2LinkCodeCreatePostQueryParams extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=expires_at" })
+  @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=expires_at;dateTimeFormat=YYYY-MM-DDThh:mm:ss.sssZ" })
   expiresAt?: Date;
 
   @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=user_id" })

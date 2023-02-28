@@ -1,26 +1,35 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Fats } from "./fats";
+import { Expose, Type } from "class-transformer";
 
 
 export class Macros extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=alcohol" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "alcohol" })
   alcohol?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=carbs" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "carbs" })
   carbs?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=fats" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "fats" })
+  @Type(() => Fats)
   fats?: Fats;
 
-  @SpeakeasyMetadata({ data: "json, name=fibre" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "fibre" })
   fibre?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=protein" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "protein" })
   protein?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=sugar" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "sugar" })
   sugar?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=water" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "water" })
   water?: number;
 }

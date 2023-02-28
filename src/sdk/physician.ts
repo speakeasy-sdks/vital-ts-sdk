@@ -1,6 +1,8 @@
 import * as utils from "../internal/utils";
 import * as operations from "./models/operations";
+import * as shared from "./models/shared";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { plainToInstance } from "class-transformer";
 
 export class Physician {
   _defaultClient: AxiosInstance;
@@ -44,6 +46,7 @@ export class Physician {
     }
     
     const client: AxiosInstance = this._defaultClient!;
+    
     const headers = {...reqBodyHeaders, ...config?.headers};
     if (reqBody == null || Object.keys(reqBody).length === 0) throw new Error("request body is required");
     
@@ -63,12 +66,20 @@ export class Physician {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.reviewWheelV2PhysicianReviewWheelPost200ApplicationJSONAny = httpRes?.data;
+              res.reviewWheelV2PhysicianReviewWheelPost200ApplicationJSONAny = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }

@@ -1,34 +1,45 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose } from "class-transformer";
 
 
 export class LabResultsMetadata extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=age" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "age" })
   age: string;
 
-  @SpeakeasyMetadata({ data: "json, name=clia_#" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "clia_#" })
   cliaNumber?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=date_collected" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "date_collected" })
   dateCollected?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=date_received" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "date_received" })
   dateReceived?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=date_reported" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "date_reported" })
   dateReported: string;
 
-  @SpeakeasyMetadata({ data: "json, name=dob" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "dob" })
   dob: string;
 
-  @SpeakeasyMetadata({ data: "json, name=laboratory" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "laboratory" })
   laboratory?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=patient" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "patient" })
   patient: string;
 
-  @SpeakeasyMetadata({ data: "json, name=provider" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "provider" })
   provider?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=specimen_number" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "specimen_number" })
   specimenNumber: string;
 }

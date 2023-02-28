@@ -1,13 +1,17 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose } from "class-transformer";
 
 
 export class LinkTokenBase extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=is_used" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "is_used" })
   isUsed?: boolean;
 
-  @SpeakeasyMetadata({ data: "json, name=oauth_info" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "oauth_info" })
   oauthInfo?: Record<string, any>;
 
-  @SpeakeasyMetadata({ data: "json, name=token" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "token" })
   token: string;
 }

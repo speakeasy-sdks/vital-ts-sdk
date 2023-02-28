@@ -77,3 +77,9 @@ Based on:
 Based on:
 - OpenAPI Doc 0.1.620 https://api.tryvital.io/openapi.json
 - Speakeasy CLI 1.5.3 https://github.com/speakeasy-api/speakeasy
+
+## Version 1.3.4
+### Changes
+Based on:
+- OpenAPI Doc 0.1.620 https://api.tryvital.io/openapi.json
+- Speakeasy CLI 1.5.4 https://github.com/speakeasy-api/speakeasy

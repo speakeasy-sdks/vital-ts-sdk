@@ -1,30 +1,39 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { AddressPurposeEnum } from "./addresspurposeenum";
 import { AddressTypeEnum } from "./addresstypeenum";
+import { Expose } from "class-transformer";
 
 
 export class PersonAddress extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=city" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "city" })
   city: string;
 
-  @SpeakeasyMetadata({ data: "json, name=country" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "country" })
   country?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=line" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "line" })
   line: string[];
 
-  @SpeakeasyMetadata({ data: "json, name=postalCode" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "postalCode" })
   postalCode?: any;
 
-  @SpeakeasyMetadata({ data: "json, name=state" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "state" })
   state: string;
 
-  @SpeakeasyMetadata({ data: "json, name=text" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "text" })
   text?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=type" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "type" })
   type?: AddressTypeEnum;
 
-  @SpeakeasyMetadata({ data: "json, name=use" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "use" })
   use: AddressPurposeEnum;
 }

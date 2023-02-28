@@ -1,6 +1,7 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { OrderStatusEnum } from "./orderstatusenum";
 import { TestkitClientFacing } from "./testkitclientfacing";
+import { Expose, Transform, Type } from "class-transformer";
 
 
 // VitalCoreSchemasDbSchemasTestkitsOrderClientFacingOrderPatientAddress
@@ -8,28 +9,36 @@ import { TestkitClientFacing } from "./testkitclientfacing";
  * Patient Address
 **/
 export class VitalCoreSchemasDbSchemasTestkitsOrderClientFacingOrderPatientAddress extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=city" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "city" })
   city: string;
 
-  @SpeakeasyMetadata({ data: "json, name=country" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "country" })
   country: string;
 
-  @SpeakeasyMetadata({ data: "json, name=phone_number" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "phone_number" })
   phoneNumber: string;
 
-  @SpeakeasyMetadata({ data: "json, name=receiver_name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "receiver_name" })
   receiverName: string;
 
-  @SpeakeasyMetadata({ data: "json, name=state" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "state" })
   state: string;
 
-  @SpeakeasyMetadata({ data: "json, name=street" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "street" })
   street: string;
 
-  @SpeakeasyMetadata({ data: "json, name=street_number" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "street_number" })
   streetNumber?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=zip" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "zip" })
   zip: string;
 }
 
@@ -38,71 +47,99 @@ export class VitalCoreSchemasDbSchemasTestkitsOrderClientFacingOrderPatientAddre
  * Patient Details
 **/
 export class VitalCoreSchemasDbSchemasTestkitsOrderClientFacingOrderPatientDetails extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=dob" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "dob" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   dob: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=email" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "email" })
   email?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=gender" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "gender" })
   gender: string;
 }
 
 export class VitalCoreSchemasDbSchemasTestkitsOrderClientFacingOrder extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=created_on" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "created_on" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   createdOn: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "id" })
   id?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=inbound_courier" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "inbound_courier" })
   inboundCourier?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=inbound_tracking_number" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "inbound_tracking_number" })
   inboundTrackingNumber?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=inbound_tracking_url" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "inbound_tracking_url" })
   inboundTrackingUrl?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=notes" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "notes" })
   notes?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=outbound_courier" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "outbound_courier" })
   outboundCourier?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=outbound_tracking_number" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "outbound_tracking_number" })
   outboundTrackingNumber?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=outbound_tracking_url" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "outbound_tracking_url" })
   outboundTrackingUrl?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=patient_address" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "patient_address" })
+  @Type(() => VitalCoreSchemasDbSchemasTestkitsOrderClientFacingOrderPatientAddress)
   patientAddress: VitalCoreSchemasDbSchemasTestkitsOrderClientFacingOrderPatientAddress;
 
-  @SpeakeasyMetadata({ data: "json, name=patient_details" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "patient_details" })
+  @Type(() => VitalCoreSchemasDbSchemasTestkitsOrderClientFacingOrderPatientDetails)
   patientDetails: VitalCoreSchemasDbSchemasTestkitsOrderClientFacingOrderPatientDetails;
 
-  @SpeakeasyMetadata({ data: "json, name=sample_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "sample_id" })
   sampleId?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=status" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "status" })
   status?: OrderStatusEnum;
 
-  @SpeakeasyMetadata({ data: "json, name=team_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "team_id" })
   teamId: string;
 
-  @SpeakeasyMetadata({ data: "json, name=testkit" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "testkit" })
+  @Type(() => TestkitClientFacing)
   testkit: TestkitClientFacing;
 
-  @SpeakeasyMetadata({ data: "json, name=testkit_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "testkit_id" })
   testkitId: string;
 
-  @SpeakeasyMetadata({ data: "json, name=updated_on" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "updated_on" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   updatedOn: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=user_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "user_id" })
   userId: string;
 
-  @SpeakeasyMetadata({ data: "json, name=user_key" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "user_key" })
   userKey?: string;
 }

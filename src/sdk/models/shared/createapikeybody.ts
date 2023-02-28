@@ -1,7 +1,9 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose } from "class-transformer";
 
 
 export class CreateApiKeyBody extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=label" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "label" })
   label: string;
 }

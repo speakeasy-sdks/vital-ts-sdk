@@ -1,6 +1,7 @@
 import * as utils from "../internal/utils";
 import * as operations from "./models/operations";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { plainToInstance } from "class-transformer";
 
 export class Providers {
   _defaultClient: AxiosInstance;
@@ -32,6 +33,7 @@ export class Providers {
     
     const client: AxiosInstance = this._defaultClient!;
     
+    
     const r = client.request({
       url: url,
       method: "get",
@@ -46,7 +48,11 @@ export class Providers {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.clientFacingSourceDetaileds = httpRes?.data;
+              res.clientFacingSourceDetaileds = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }

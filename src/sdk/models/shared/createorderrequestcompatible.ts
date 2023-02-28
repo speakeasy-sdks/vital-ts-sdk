@@ -5,6 +5,7 @@ import { PatientDetailsCompatible } from "./patientdetailscompatible";
 import { PhysicianBase } from "./physicianbase";
 import { QuestionnaireItem } from "./questionnaireitem";
 import { RelatedPerson } from "./relatedperson";
+import { Expose, Type } from "class-transformer";
 
 
 // CreateOrderRequestCompatible
@@ -12,27 +13,41 @@ import { RelatedPerson } from "./relatedperson";
  * Schema for the create Order endpoint.
 **/
 export class CreateOrderRequestCompatible extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=consents", elemType: Consent })
+  @SpeakeasyMetadata({ elemType: Consent })
+  @Expose({ name: "consents" })
+  @Type(() => Consent)
   consents?: Consent[];
 
-  @SpeakeasyMetadata({ data: "json, name=intakes", elemType: QuestionnaireItem })
+  @SpeakeasyMetadata({ elemType: QuestionnaireItem })
+  @Expose({ name: "intakes" })
+  @Type(() => QuestionnaireItem)
   intakes?: QuestionnaireItem[];
 
-  @SpeakeasyMetadata({ data: "json, name=lab_test_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "lab_test_id" })
   labTestId: string;
 
-  @SpeakeasyMetadata({ data: "json, name=patient_address" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "patient_address" })
+  @Type(() => PatientAddressCompatible)
   patientAddress: PatientAddressCompatible;
 
-  @SpeakeasyMetadata({ data: "json, name=patient_details" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "patient_details" })
+  @Type(() => PatientDetailsCompatible)
   patientDetails: PatientDetailsCompatible;
 
-  @SpeakeasyMetadata({ data: "json, name=physician" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "physician" })
+  @Type(() => PhysicianBase)
   physician?: PhysicianBase;
 
-  @SpeakeasyMetadata({ data: "json, name=related_person", elemType: RelatedPerson })
+  @SpeakeasyMetadata({ elemType: RelatedPerson })
+  @Expose({ name: "related_person" })
+  @Type(() => RelatedPerson)
   relatedPerson?: RelatedPerson[];
 
-  @SpeakeasyMetadata({ data: "json, name=user_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "user_id" })
   userId: string;
 }

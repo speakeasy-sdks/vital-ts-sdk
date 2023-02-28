@@ -1,16 +1,21 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose } from "class-transformer";
 
 
 export class ShipbobTracking extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=carrier" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "carrier" })
   carrier: string;
 
-  @SpeakeasyMetadata({ data: "json, name=carrier_service" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "carrier_service" })
   carrierService: string;
 
-  @SpeakeasyMetadata({ data: "json, name=tracking_number" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "tracking_number" })
   trackingNumber: string;
 
-  @SpeakeasyMetadata({ data: "json, name=tracking_url" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "tracking_url" })
   trackingUrl: string;
 }

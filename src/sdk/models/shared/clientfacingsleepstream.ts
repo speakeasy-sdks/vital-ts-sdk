@@ -3,18 +3,27 @@ import { ClientFacingHeartRateTimeseries } from "./clientfacingheartratetimeseri
 import { ClientFacingHRVTimeseries } from "./clientfacinghrvtimeseries";
 import { ClientFacingHypnogramTimeseries } from "./clientfacinghypnogramtimeseries";
 import { ClientFacingRespiratoryRateTimeseries } from "./clientfacingrespiratoryratetimeseries";
+import { Expose, Type } from "class-transformer";
 
 
 export class ClientFacingSleepStream extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=heartrate", elemType: ClientFacingHeartRateTimeseries })
+  @SpeakeasyMetadata({ elemType: ClientFacingHeartRateTimeseries })
+  @Expose({ name: "heartrate" })
+  @Type(() => ClientFacingHeartRateTimeseries)
   heartrate?: ClientFacingHeartRateTimeseries[];
 
-  @SpeakeasyMetadata({ data: "json, name=hrv", elemType: ClientFacingHRVTimeseries })
+  @SpeakeasyMetadata({ elemType: ClientFacingHRVTimeseries })
+  @Expose({ name: "hrv" })
+  @Type(() => ClientFacingHRVTimeseries)
   hrv?: ClientFacingHRVTimeseries[];
 
-  @SpeakeasyMetadata({ data: "json, name=hypnogram", elemType: ClientFacingHypnogramTimeseries })
+  @SpeakeasyMetadata({ elemType: ClientFacingHypnogramTimeseries })
+  @Expose({ name: "hypnogram" })
+  @Type(() => ClientFacingHypnogramTimeseries)
   hypnogram?: ClientFacingHypnogramTimeseries[];
 
-  @SpeakeasyMetadata({ data: "json, name=respiratory_rate", elemType: ClientFacingRespiratoryRateTimeseries })
+  @SpeakeasyMetadata({ elemType: ClientFacingRespiratoryRateTimeseries })
+  @Expose({ name: "respiratory_rate" })
+  @Type(() => ClientFacingRespiratoryRateTimeseries)
   respiratoryRate?: ClientFacingRespiratoryRateTimeseries[];
 }

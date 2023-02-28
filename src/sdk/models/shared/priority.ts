@@ -1,19 +1,25 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose } from "class-transformer";
 
 
 export class Priority extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=data_type" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "data_type" })
   dataType?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "id" })
   id: number;
 
-  @SpeakeasyMetadata({ data: "json, name=priority" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "priority" })
   priority: number;
 
-  @SpeakeasyMetadata({ data: "json, name=source_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "source_id" })
   sourceId: number;
 
-  @SpeakeasyMetadata({ data: "json, name=team_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "team_id" })
   teamId: string;
 }

@@ -1,31 +1,43 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose, Transform } from "class-transformer";
 
 
 export class LabInDB extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=city" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "city" })
   city: string;
 
-  @SpeakeasyMetadata({ data: "json, name=clia" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "clia" })
   clia?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=created_at" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "created_at" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   createdAt?: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=first_line_address" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "first_line_address" })
   firstLineAddress: string;
 
-  @SpeakeasyMetadata({ data: "json, name=id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "id" })
   id: number;
 
-  @SpeakeasyMetadata({ data: "json, name=name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "name" })
   name: string;
 
-  @SpeakeasyMetadata({ data: "json, name=slug" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "slug" })
   slug: string;
 
-  @SpeakeasyMetadata({ data: "json, name=updated_at" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "updated_at" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   updatedAt?: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=zipcode" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "zipcode" })
   zipcode: string;
 }

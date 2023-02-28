@@ -1,8 +1,11 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Attachment } from "./attachment";
+import { Expose, Type } from "class-transformer";
 
 
 export class AnswerAttachment extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=valueAttachment" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "valueAttachment" })
+  @Type(() => Attachment)
   valueAttachment: Attachment;
 }

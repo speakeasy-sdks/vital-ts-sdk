@@ -1,5 +1,6 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { ClientFacingSleepStream } from "./clientfacingsleepstream";
+import { Expose, Transform, Type } from "class-transformer";
 
 
 // ClientFacingSleepProvider
@@ -7,89 +8,123 @@ import { ClientFacingSleepStream } from "./clientfacingsleepstream";
  * Source the data has come from.
 **/
 export class ClientFacingSleepProvider extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=logo" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "logo" })
   logo: string;
 
-  @SpeakeasyMetadata({ data: "json, name=name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "name" })
   name: string;
 
-  @SpeakeasyMetadata({ data: "json, name=slug" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "slug" })
   slug: string;
 }
 
 export class ClientFacingSleep extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=average_hrv" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "average_hrv" })
   averageHrv?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=awake" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "awake" })
   awake: number;
 
-  @SpeakeasyMetadata({ data: "json, name=bedtime_start" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "bedtime_start" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   bedtimeStart: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=bedtime_stop" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "bedtime_stop" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   bedtimeStop: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=calendar_date" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "calendar_date" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   calendarDate: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=date" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "date" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   date: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=deep" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "deep" })
   deep: number;
 
-  @SpeakeasyMetadata({ data: "json, name=duration" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "duration" })
   duration: number;
 
-  @SpeakeasyMetadata({ data: "json, name=efficiency" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "efficiency" })
   efficiency?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=hr_average" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "hr_average" })
   hrAverage?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=hr_lowest" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "hr_lowest" })
   hrLowest?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "id" })
   id: string;
 
-  @SpeakeasyMetadata({ data: "json, name=latency" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "latency" })
   latency?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=light" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "light" })
   light: number;
 
-  @SpeakeasyMetadata({ data: "json, name=rem" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "rem" })
   rem: number;
 
-  @SpeakeasyMetadata({ data: "json, name=respiratory_rate" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "respiratory_rate" })
   respiratoryRate?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=score" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "score" })
   score?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=skin_temperature" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "skin_temperature" })
   skinTemperature?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=sleep_stream" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "sleep_stream" })
+  @Type(() => ClientFacingSleepStream)
   sleepStream?: ClientFacingSleepStream;
 
-  @SpeakeasyMetadata({ data: "json, name=source" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "source" })
+  @Type(() => ClientFacingSleepProvider)
   source: ClientFacingSleepProvider;
 
-  @SpeakeasyMetadata({ data: "json, name=temperature_delta" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "temperature_delta" })
   temperatureDelta?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=timezone_offset" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "timezone_offset" })
   timezoneOffset?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=total" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "total" })
   total: number;
 
-  @SpeakeasyMetadata({ data: "json, name=user_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "user_id" })
   userId: string;
 
-  @SpeakeasyMetadata({ data: "json, name=user_key" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "user_key" })
   userKey?: string;
 }

@@ -1,22 +1,31 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose, Transform } from "class-transformer";
 
 
 export class ClientFacingApiKey extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=created_at" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "created_at" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   createdAt: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=deleted_at" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "deleted_at" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   deletedAt?: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "id" })
   id: string;
 
-  @SpeakeasyMetadata({ data: "json, name=label" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "label" })
   label: string;
 
-  @SpeakeasyMetadata({ data: "json, name=team_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "team_id" })
   teamId?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=value" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "value" })
   value: string;
 }

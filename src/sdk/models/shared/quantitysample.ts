@@ -1,31 +1,43 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose, Transform } from "class-transformer";
 
 
 export class QuantitySample extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=end_date" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "end_date" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   endDate: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "id" })
   id?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=metadata" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "metadata" })
   metadata?: Record<string, any>;
 
-  @SpeakeasyMetadata({ data: "json, name=product_type" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "product_type" })
   productType?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=source_bundle" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "source_bundle" })
   sourceBundle?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=start_date" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "start_date" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   startDate: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=type" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "type" })
   type?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=unit" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "unit" })
   unit: string;
 
-  @SpeakeasyMetadata({ data: "json, name=value" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "value" })
   value: number;
 }

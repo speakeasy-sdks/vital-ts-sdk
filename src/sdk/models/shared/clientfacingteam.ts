@@ -1,48 +1,65 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { ClientFacingApiKey } from "./clientfacingapikey";
 import { ConnectedSourceClientFacingRedacted } from "./connectedsourceclientfacingredacted";
+import { Expose, Type } from "class-transformer";
 
 
 export class ClientFacingTeam extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=airtable_api_key" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "airtable_api_key" })
   airtableApiKey?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=airtable_base_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "airtable_base_id" })
   airtableBaseId?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=api_key" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "api_key" })
   apiKey?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=api_keys", elemType: ClientFacingApiKey })
+  @SpeakeasyMetadata({ elemType: ClientFacingApiKey })
+  @Expose({ name: "api_keys" })
+  @Type(() => ClientFacingApiKey)
   apiKeys?: ClientFacingApiKey[];
 
-  @SpeakeasyMetadata({ data: "json, name=client_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "client_id" })
   clientId?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=client_secret" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "client_secret" })
   clientSecret?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=configuration" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "configuration" })
   configuration?: Record<string, any>;
 
-  @SpeakeasyMetadata({ data: "json, name=connected_sources", elemType: ConnectedSourceClientFacingRedacted })
+  @SpeakeasyMetadata({ elemType: ConnectedSourceClientFacingRedacted })
+  @Expose({ name: "connected_sources" })
+  @Type(() => ConnectedSourceClientFacingRedacted)
   connectedSources?: ConnectedSourceClientFacingRedacted[];
 
-  @SpeakeasyMetadata({ data: "json, name=id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "id" })
   id: string;
 
-  @SpeakeasyMetadata({ data: "json, name=logo_url" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "logo_url" })
   logoUrl?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "name" })
   name: string;
 
-  @SpeakeasyMetadata({ data: "json, name=svix_app_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "svix_app_id" })
   svixAppId?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=testkits_texts_enabled" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "testkits_texts_enabled" })
   testkitsTextsEnabled: boolean;
 
-  @SpeakeasyMetadata({ data: "json, name=webhook_secret" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "webhook_secret" })
   webhookSecret?: string;
 }
