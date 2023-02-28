@@ -1,11 +1,15 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { LabResultsMetadata } from "./labresultsmetadata";
+import { Expose, Type } from "class-transformer";
 
 
 export class LabResultsRaw extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=metadata" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "metadata" })
+  @Type(() => LabResultsMetadata)
   metadata: LabResultsMetadata;
 
-  @SpeakeasyMetadata({ data: "json, name=results" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "results" })
   results: Record<string, any>;
 }

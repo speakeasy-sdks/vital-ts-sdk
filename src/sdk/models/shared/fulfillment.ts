@@ -1,10 +1,13 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose } from "class-transformer";
 
 
 export class Fulfillment extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=order_number" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "order_number" })
   orderNumber: string;
 
-  @SpeakeasyMetadata({ data: "json, name=order_uuid" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "order_uuid" })
   orderUuid: string;
 }

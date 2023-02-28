@@ -1,6 +1,8 @@
 import * as utils from "../internal/utils";
 import * as operations from "./models/operations";
+import * as shared from "./models/shared";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { plainToInstance } from "class-transformer";
 
 export class Testkit {
   _defaultClient: AxiosInstance;
@@ -32,6 +34,7 @@ export class Testkit {
     
     const client: AxiosInstance = this._defaultClient!;
     
+    
     const r = client.request({
       url: url,
       method: "get",
@@ -46,7 +49,11 @@ export class Testkit {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.testkitResponse = httpRes?.data;
+              res.testkitResponse = plainToInstance(
+                shared.TestkitResponse,
+                httpRes?.data as shared.TestkitResponse,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }

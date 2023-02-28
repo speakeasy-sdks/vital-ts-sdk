@@ -1,14 +1,18 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { PasswordProvidersEnum } from "./passwordprovidersenum";
+import { Expose } from "class-transformer";
 
 
 export class ProviderLinkResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=connected" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "connected" })
   connected: boolean;
 
-  @SpeakeasyMetadata({ data: "json, name=provider" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "provider" })
   provider: PasswordProvidersEnum;
 
-  @SpeakeasyMetadata({ data: "json, name=provider_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "provider_id" })
   providerId?: string;
 }

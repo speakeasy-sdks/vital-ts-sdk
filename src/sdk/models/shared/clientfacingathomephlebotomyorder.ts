@@ -2,13 +2,13 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Expose, Transform } from "class-transformer";
 
 
-// ClientFacingWalkInTestOrder
+// ClientFacingAtHomePhlebotomyOrder
 /** 
  * Schema for a walk-in test order in the client facing API.
  * 
  * To be used as part of a ClientFacingOrder.
 **/
-export class ClientFacingWalkInTestOrder extends SpeakeasyBase {
+export class ClientFacingAtHomePhlebotomyOrder extends SpeakeasyBase {
   @SpeakeasyMetadata()
   @Expose({ name: "created_at" })
   @Transform(({ value }) => new Date(value), { toClassOnly: true })

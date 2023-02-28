@@ -1,7 +1,9 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose } from "class-transformer";
 
 
 export class LinkTokenExchangeResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=link_token" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "link_token" })
   linkToken: string;
 }

@@ -1,11 +1,14 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { ProvidersEnum } from "./providersenum";
+import { Expose } from "class-transformer";
 
 
 export class BeginLinkTokenRequest extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=link_token" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "link_token" })
   linkToken: string;
 
-  @SpeakeasyMetadata({ data: "json, name=provider" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "provider" })
   provider: ProvidersEnum;
 }

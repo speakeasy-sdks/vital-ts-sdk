@@ -1,25 +1,35 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose, Transform } from "class-transformer";
 
 
 export class PhysicianBase extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=created_at" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "created_at" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   createdAt?: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=email" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "email" })
   email?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=first_name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "first_name" })
   firstName: string;
 
-  @SpeakeasyMetadata({ data: "json, name=last_name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "last_name" })
   lastName: string;
 
-  @SpeakeasyMetadata({ data: "json, name=licensed_states" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "licensed_states" })
   licensedStates?: string[];
 
-  @SpeakeasyMetadata({ data: "json, name=npi" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "npi" })
   npi: string;
 
-  @SpeakeasyMetadata({ data: "json, name=updated_at" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "updated_at" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   updatedAt?: Date;
 }

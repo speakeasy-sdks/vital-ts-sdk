@@ -1,22 +1,29 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose } from "class-transformer";
 
 
 export class Fats extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=monounsaturated" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "monounsaturated" })
   monounsaturated?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=omega3" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "omega3" })
   omega3?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=omega6" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "omega6" })
   omega6?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=polyunsaturated" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "polyunsaturated" })
   polyunsaturated?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=saturated" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "saturated" })
   saturated?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=total" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "total" })
   total?: number;
 }

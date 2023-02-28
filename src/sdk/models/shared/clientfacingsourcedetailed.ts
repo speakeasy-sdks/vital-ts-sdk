@@ -1,23 +1,30 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { ResourceEnum } from "./resourceenum";
+import { Expose } from "class-transformer";
 
 
 export class ClientFacingSourceDetailed extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=auth_type" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "auth_type" })
   authType?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=description" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "description" })
   description: string;
 
-  @SpeakeasyMetadata({ data: "json, name=logo" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "logo" })
   logo?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "name" })
   name: string;
 
-  @SpeakeasyMetadata({ data: "json, name=slug" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "slug" })
   slug: string;
 
-  @SpeakeasyMetadata({ data: "json, name=supported_resources" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "supported_resources" })
   supportedResources?: ResourceEnum[];
 }

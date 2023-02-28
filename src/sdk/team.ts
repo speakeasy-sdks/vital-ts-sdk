@@ -1,6 +1,8 @@
 import * as utils from "../internal/utils";
 import * as operations from "./models/operations";
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse, ParamsSerializerOptions } from "axios";
+import * as shared from "./models/shared";
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { plainToInstance } from "class-transformer";
 
 export class Team {
   _defaultClient: AxiosInstance;
@@ -46,6 +48,7 @@ export class Team {
     }
     
     const client: AxiosInstance = this._defaultClient!;
+    
     const headers = {...reqBodyHeaders, ...config?.headers};
     if (reqBody == null || Object.keys(reqBody).length === 0) throw new Error("request body is required");
     
@@ -65,12 +68,20 @@ export class Team {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.apiKeyInDB = httpRes?.data;
+              res.apiKeyInDB = plainToInstance(
+                shared.ApiKeyInDB,
+                httpRes?.data as shared.ApiKeyInDB,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -107,6 +118,7 @@ export class Team {
     }
     
     const client: AxiosInstance = this._defaultClient!;
+    
     const headers = {...reqBodyHeaders, ...config?.headers};
     if (reqBody == null || Object.keys(reqBody).length === 0) throw new Error("request body is required");
     
@@ -126,12 +138,20 @@ export class Team {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.priority = httpRes?.data;
+              res.priority = plainToInstance(
+                shared.Priority,
+                httpRes?.data as shared.Priority,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -168,6 +188,7 @@ export class Team {
     }
     
     const client: AxiosInstance = this._defaultClient!;
+    
     const headers = {...reqBodyHeaders, ...config?.headers};
     if (reqBody == null || Object.keys(reqBody).length === 0) throw new Error("request body is required");
     
@@ -187,12 +208,20 @@ export class Team {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.teamInDB = httpRes?.data;
+              res.teamInDB = plainToInstance(
+                shared.TeamInDB,
+                httpRes?.data as shared.TeamInDB,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -220,6 +249,7 @@ export class Team {
     
     const client: AxiosInstance = this._defaultClient!;
     
+    
     const r = client.request({
       url: url,
       method: "delete",
@@ -234,12 +264,20 @@ export class Team {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.apiKeyInDB = httpRes?.data;
+              res.apiKeyInDB = plainToInstance(
+                shared.ApiKeyInDB,
+                httpRes?.data as shared.ApiKeyInDB,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -267,6 +305,7 @@ export class Team {
     
     const client: AxiosInstance = this._defaultClient!;
     
+    
     const r = client.request({
       url: url,
       method: "delete",
@@ -281,12 +320,20 @@ export class Team {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.teamInDB = httpRes?.data;
+              res.teamInDB = plainToInstance(
+                shared.TeamInDB,
+                httpRes?.data as shared.TeamInDB,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -314,6 +361,7 @@ export class Team {
     
     const client: AxiosInstance = this._defaultClient!;
     
+    
     const r = client.request({
       url: url,
       method: "get",
@@ -328,12 +376,20 @@ export class Team {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.apiKeyInDBS = httpRes?.data;
+              res.apiKeyInDBS = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -360,19 +416,13 @@ export class Team {
     const url: string = baseURL.replace(/\/$/, "") + "/v2/team/source/priorities";
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -383,12 +433,20 @@ export class Team {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.getSourcePrioritiesV2TeamSourcePrioritiesGet200ApplicationJSONObjects = httpRes?.data;
+              res.getSourcePrioritiesV2TeamSourcePrioritiesGet200ApplicationJSONObjects = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -409,6 +467,7 @@ export class Team {
     
     const client: AxiosInstance = this._defaultClient!;
     
+    
     const r = client.request({
       url: url,
       method: "get",
@@ -423,7 +482,11 @@ export class Team {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.responseGetSvixWebhookUrlV2TeamSvixUrlGet = httpRes?.data;
+              res.responseGetSvixWebhookUrlV2TeamSvixUrlGet = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -446,6 +509,7 @@ export class Team {
     
     const client: AxiosInstance = this._defaultClient!;
     
+    
     const r = client.request({
       url: url,
       method: "get",
@@ -460,7 +524,11 @@ export class Team {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.responseGetTeamConfigV2TeamLinkConfigGet = httpRes?.data;
+              res.responseGetTeamConfigV2TeamLinkConfigGet = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -488,6 +556,7 @@ export class Team {
     
     const client: AxiosInstance = this._defaultClient!;
     
+    
     const r = client.request({
       url: url,
       method: "get",
@@ -502,12 +571,20 @@ export class Team {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.responseGetTeamUserCountV2TeamTeamIdUsersCountGet = httpRes?.data;
+              res.responseGetTeamUserCountV2TeamTeamIdUsersCountGet = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -535,6 +612,7 @@ export class Team {
     
     const client: AxiosInstance = this._defaultClient!;
     
+    
     const r = client.request({
       url: url,
       method: "get",
@@ -549,71 +627,20 @@ export class Team {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.clientFacingTeam = httpRes?.data;
+              res.clientFacingTeam = plainToInstance(
+                shared.ClientFacingTeam,
+                httpRes?.data as shared.ClientFacingTeam,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
-            }
-            break;
-        }
-
-        return res;
-      })
-  }
-
-  
-  /**
-   * migrateTeamV2TeamTeamIdAdminMigratePost - Migrate Team
-  **/
-  migrateTeamV2TeamTeamIdAdminMigratePost(
-    req: operations.MigrateTeamV2TeamTeamIdAdminMigratePostRequest,
-    config?: AxiosRequestConfig
-  ): Promise<operations.MigrateTeamV2TeamTeamIdAdminMigratePostResponse> {
-    if (!(req instanceof utils.SpeakeasyBase)) {
-      req = new operations.MigrateTeamV2TeamTeamIdAdminMigratePostRequest(req);
-    }
-    
-    const baseURL: string = this._serverURL;
-    const url: string = utils.generateURL(baseURL, "/v2/team/{team_id}/admin/migrate", req.pathParams);
-
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
-
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req);
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-    
-    const client: AxiosInstance = this._defaultClient!;
-    const headers = {...reqBodyHeaders, ...config?.headers};
-    if (reqBody == null || Object.keys(reqBody).length === 0) throw new Error("request body is required");
-    
-    const r = client.request({
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody, 
-      ...config,
-    });
-    
-    return r.then((httpRes: AxiosResponse) => {
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-        if (httpRes?.status == null) throw new Error(`status code not found in response: ${httpRes}`);
-        const res: operations.MigrateTeamV2TeamTeamIdAdminMigratePostResponse = {statusCode: httpRes.status, contentType: contentType};
-        switch (true) {
-          case httpRes?.status == 200:
-            if (utils.matchContentType(contentType, `application/json`)) {
-                res.migrateTeamV2TeamTeamIdAdminMigratePost200ApplicationJSONAny = httpRes?.data;
-            }
-            break;
-          case httpRes?.status == 422:
-            if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -641,6 +668,7 @@ export class Team {
     
     const client: AxiosInstance = this._defaultClient!;
     
+    
     const r = client.request({
       url: url,
       method: "patch",
@@ -655,12 +683,20 @@ export class Team {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.apiKeyInDB = httpRes?.data;
+              res.apiKeyInDB = plainToInstance(
+                shared.ApiKeyInDB,
+                httpRes?.data as shared.ApiKeyInDB,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -687,19 +723,13 @@ export class Team {
     const url: string = baseURL.replace(/\/$/, "") + "/v2/team/users/search";
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -710,12 +740,20 @@ export class Team {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.clientFacingUsers = httpRes?.data;
+              res.clientFacingUsers = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -752,6 +790,7 @@ export class Team {
     }
     
     const client: AxiosInstance = this._defaultClient!;
+    
     const headers = {...reqBodyHeaders, ...config?.headers};
     if (reqBody == null || Object.keys(reqBody).length === 0) throw new Error("request body is required");
     
@@ -771,12 +810,20 @@ export class Team {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.apiKeyInDB = httpRes?.data;
+              res.apiKeyInDB = plainToInstance(
+                shared.ApiKeyInDB,
+                httpRes?.data as shared.ApiKeyInDB,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -803,19 +850,13 @@ export class Team {
     const url: string = baseURL.replace(/\/$/, "") + "/v2/team/source/priorities";
     
     const client: AxiosInstance = this._defaultClient!;
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
     
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "patch",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -826,12 +867,20 @@ export class Team {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.updateSourcePrioritiesV2TeamSourcePrioritiesPatch200ApplicationJSONObjects = httpRes?.data;
+              res.updateSourcePrioritiesV2TeamSourcePrioritiesPatch200ApplicationJSONObjects = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -868,6 +917,7 @@ export class Team {
     }
     
     const client: AxiosInstance = this._defaultClient!;
+    
     const headers = {...reqBodyHeaders, ...config?.headers};
     if (reqBody == null || Object.keys(reqBody).length === 0) throw new Error("request body is required");
     
@@ -887,12 +937,20 @@ export class Team {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.teamInDB = httpRes?.data;
+              res.teamInDB = plainToInstance(
+                shared.TeamInDB,
+                httpRes?.data as shared.TeamInDB,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 422:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.httpValidationError = httpRes?.data;
+              res.httpValidationError = plainToInstance(
+                shared.HTTPValidationError,
+                httpRes?.data as shared.HTTPValidationError,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }

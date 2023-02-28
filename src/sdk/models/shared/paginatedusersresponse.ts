@@ -1,17 +1,23 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { ClientFacingUser } from "./clientfacinguser";
+import { Expose, Type } from "class-transformer";
 
 
 export class PaginatedUsersResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=limit" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "limit" })
   limit: number;
 
-  @SpeakeasyMetadata({ data: "json, name=offset" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "offset" })
   offset: number;
 
-  @SpeakeasyMetadata({ data: "json, name=total" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "total" })
   total: number;
 
-  @SpeakeasyMetadata({ data: "json, name=users", elemType: ClientFacingUser })
+  @SpeakeasyMetadata({ elemType: ClientFacingUser })
+  @Expose({ name: "users" })
+  @Type(() => ClientFacingUser)
   users: ClientFacingUser[];
 }

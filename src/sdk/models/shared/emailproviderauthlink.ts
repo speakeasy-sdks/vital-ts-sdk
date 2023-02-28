@@ -1,15 +1,19 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { ProvidersEnum } from "./providersenum";
 import { RegionEnum } from "./regionenum";
+import { Expose } from "class-transformer";
 
 
 export class EmailProviderAuthLink extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=email" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "email" })
   email: string;
 
-  @SpeakeasyMetadata({ data: "json, name=provider" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "provider" })
   provider?: ProvidersEnum;
 
-  @SpeakeasyMetadata({ data: "json, name=region" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "region" })
   region?: RegionEnum;
 }

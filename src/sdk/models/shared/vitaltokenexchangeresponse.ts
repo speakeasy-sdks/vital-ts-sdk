@@ -1,21 +1,28 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { RegionEnum } from "./regionenum";
 import { VitalTokenExchangeTeamResponse } from "./vitaltokenexchangeteamresponse";
+import { Expose, Type } from "class-transformer";
 
 
 export class VitalTokenExchangeResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=api_key" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "api_key" })
   apiKey: string;
 
-  @SpeakeasyMetadata({ data: "json, name=environment" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "environment" })
   environment: string;
 
-  @SpeakeasyMetadata({ data: "json, name=region" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "region" })
   region: RegionEnum;
 
-  @SpeakeasyMetadata({ data: "json, name=team" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "team" })
+  @Type(() => VitalTokenExchangeTeamResponse)
   team: VitalTokenExchangeTeamResponse;
 
-  @SpeakeasyMetadata({ data: "json, name=user_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "user_id" })
   userId: string;
 }

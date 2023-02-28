@@ -1,5 +1,6 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Fulfillment } from "./fulfillment";
+import { Expose, Type } from "class-transformer";
 
 export enum ShipmentWebhookUpdateWebhookTypeEnum {
     ShipmentUpdate = "Shipment Update"
@@ -60,9 +61,12 @@ export enum ShipmentWebhookUpdateWebhookTypeEnum {
  * }
 **/
 export class ShipmentWebhookUpdate extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=fulfillment" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "fulfillment" })
+  @Type(() => Fulfillment)
   fulfillment: Fulfillment;
 
-  @SpeakeasyMetadata({ data: "json, name=webhook_type" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "webhook_type" })
   webhookType: ShipmentWebhookUpdateWebhookTypeEnum;
 }

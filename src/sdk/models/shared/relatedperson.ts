@@ -3,30 +3,44 @@ import { ContactPoint } from "./contactpoint";
 import { HumanName } from "./humanname";
 import { PersonAddress } from "./personaddress";
 import { PhotoAttachment } from "./photoattachment";
+import { Expose, Transform, Type } from "class-transformer";
 
 
 export class RelatedPerson extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=address", elemType: PersonAddress })
+  @SpeakeasyMetadata({ elemType: PersonAddress })
+  @Expose({ name: "address" })
+  @Type(() => PersonAddress)
   address?: PersonAddress[];
 
-  @SpeakeasyMetadata({ data: "json, name=birthDate" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "birthDate" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   birthDate?: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=gender" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "gender" })
   gender?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=name", elemType: HumanName })
+  @SpeakeasyMetadata({ elemType: HumanName })
+  @Expose({ name: "name" })
+  @Type(() => HumanName)
   name?: HumanName[];
 
-  @SpeakeasyMetadata({ data: "json, name=photo", elemType: PhotoAttachment })
+  @SpeakeasyMetadata({ elemType: PhotoAttachment })
+  @Expose({ name: "photo" })
+  @Type(() => PhotoAttachment)
   photo?: PhotoAttachment[];
 
-  @SpeakeasyMetadata({ data: "json, name=relationshipType" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "relationshipType" })
   relationshipType: string;
 
-  @SpeakeasyMetadata({ data: "json, name=resourceType" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "resourceType" })
   resourceType?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=telecom", elemType: ContactPoint })
+  @SpeakeasyMetadata({ elemType: ContactPoint })
+  @Expose({ name: "telecom" })
+  @Type(() => ContactPoint)
   telecom?: ContactPoint[];
 }

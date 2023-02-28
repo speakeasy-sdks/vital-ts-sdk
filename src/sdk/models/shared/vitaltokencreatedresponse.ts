@@ -1,10 +1,13 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose } from "class-transformer";
 
 
 export class VitalTokenCreatedResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=code" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "code" })
   code: string;
 
-  @SpeakeasyMetadata({ data: "json, name=exchange_url" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "exchange_url" })
   exchangeUrl: string;
 }

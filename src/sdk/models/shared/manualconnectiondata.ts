@@ -1,10 +1,13 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose } from "class-transformer";
 
 
 export class ManualConnectionData extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=provider_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "provider_id" })
   providerId?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=user_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "user_id" })
   userId: string;
 }

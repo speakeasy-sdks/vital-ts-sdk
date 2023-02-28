@@ -1,16 +1,21 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose } from "class-transformer";
 
 
 export class UserRefreshErrorResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=error" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "error" })
   error: string;
 
-  @SpeakeasyMetadata({ data: "json, name=failed_sources" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "failed_sources" })
   failedSources?: string[];
 
-  @SpeakeasyMetadata({ data: "json, name=success" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "success" })
   success: boolean;
 
-  @SpeakeasyMetadata({ data: "json, name=user_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "user_id" })
   userId: string;
 }

@@ -42,9 +42,13 @@ production:`https://auth.tryvital.io/oauth/token`
 ## SDK Example Usage
 <!-- Start SDK Example Usage -->
 ```typescript
-import { Vital, withSecurity} from "@vital/sdk";
-import { DeregisterGarminV2DataWebhookDeregisterGarminPostRequest, DeregisterGarminV2DataWebhookDeregisterGarminPostResponse } from "@vital/sdk/src/sdk/models/operations";
+import {
+  DeregisterGarminV2DataWebhookDeregisterGarminPostRequest,
+  DeregisterGarminV2DataWebhookDeregisterGarminPostResponse 
+} from "@vital/sdk/dist/sdk/models/operations";
+
 import { AxiosError } from "axios";
+import { Vital } from "@vital/sdk";
 
 
 const sdk = new Vital();
@@ -166,7 +170,6 @@ sdk.dataWebhook.deregisterGarminV2DataWebhookDeregisterGarminPost(req).then((res
 * `getTeamConfigV2TeamLinkConfigGet` - Get Team Config
 * `getTeamUserCountV2TeamTeamIdUsersCountGet` - Get Team User Count
 * `getTeamV2TeamTeamIdGet` - Get Team
-* `migrateTeamV2TeamTeamIdAdminMigratePost` - Migrate Team
 * `rotateApiKeyV2TeamTeamIdApikeyApiKeyIdRotatePatch` - Rotate Api Key
 * `searchTeamUsersByUuidOrClientUserIdV2TeamUsersSearchGet` - Search Team Users By Uuid Or Client User Id
 * `updateApiKeyLabelV2TeamTeamIdApikeyApiKeyIdPatch` - Update Api Key Label

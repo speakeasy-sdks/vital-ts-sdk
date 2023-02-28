@@ -1,34 +1,45 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose } from "class-transformer";
 
 
 export class Source extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=auth_type" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "auth_type" })
   authType?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=backfill_num_days" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "backfill_num_days" })
   backfillNumDays?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=description" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "description" })
   description: string;
 
-  @SpeakeasyMetadata({ data: "json, name=group" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "group" })
   group?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "id" })
   id: number;
 
-  @SpeakeasyMetadata({ data: "json, name=is_active" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "is_active" })
   isActive?: boolean;
 
-  @SpeakeasyMetadata({ data: "json, name=logo" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "logo" })
   logo: string;
 
-  @SpeakeasyMetadata({ data: "json, name=name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "name" })
   name: string;
 
-  @SpeakeasyMetadata({ data: "json, name=oauth_url" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "oauth_url" })
   oauthUrl?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=slug" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "slug" })
   slug: string;
 }

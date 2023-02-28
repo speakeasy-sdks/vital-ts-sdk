@@ -1,23 +1,31 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { TimeseriesMetricPoint } from "./timeseriesmetricpoint";
+import { Expose, Type } from "class-transformer";
 
 
 export class MetricsResult extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=number_of_connected_sources" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "number_of_connected_sources" })
   numberOfConnectedSources?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=number_of_connected_sources_by_week", elemType: TimeseriesMetricPoint })
+  @SpeakeasyMetadata({ elemType: TimeseriesMetricPoint })
+  @Expose({ name: "number_of_connected_sources_by_week" })
+  @Type(() => TimeseriesMetricPoint)
   numberOfConnectedSourcesByWeek?: TimeseriesMetricPoint[];
 
-  @SpeakeasyMetadata({ data: "json, name=number_of_errored_connected_sources" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "number_of_errored_connected_sources" })
   numberOfErroredConnectedSources?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=number_of_ordered_tests" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "number_of_ordered_tests" })
   numberOfOrderedTests?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=number_of_users" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "number_of_users" })
   numberOfUsers?: number;
 
-  @SpeakeasyMetadata({ data: "json, name=team_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "team_id" })
   teamId: any;
 }

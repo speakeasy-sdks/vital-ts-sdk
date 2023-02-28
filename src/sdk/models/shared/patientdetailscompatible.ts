@@ -1,22 +1,30 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose, Transform } from "class-transformer";
 
 
 export class PatientDetailsCompatible extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=dob" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "dob" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   dob: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=email" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "email" })
   email?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=first_name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "first_name" })
   firstName?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=gender" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "gender" })
   gender: string;
 
-  @SpeakeasyMetadata({ data: "json, name=last_name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "last_name" })
   lastName?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=phone_number" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "phone_number" })
   phoneNumber?: string;
 }

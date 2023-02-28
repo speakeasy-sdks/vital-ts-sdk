@@ -2,24 +2,34 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { DataStageEnum } from "./datastageenum";
 import { ManualProvidersEnum } from "./manualprovidersenum";
 import { QuantitySample } from "./quantitysample";
+import { Expose, Transform, Type } from "class-transformer";
 
 
 export class ManualTimeseriesCreationPayload extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=data", elemType: QuantitySample })
+  @SpeakeasyMetadata({ elemType: QuantitySample })
+  @Expose({ name: "data" })
+  @Type(() => QuantitySample)
   data: QuantitySample[];
 
-  @SpeakeasyMetadata({ data: "json, name=end_date" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "end_date" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   endDate?: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=provider" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "provider" })
   provider: ManualProvidersEnum;
 
-  @SpeakeasyMetadata({ data: "json, name=stage" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "stage" })
   stage: DataStageEnum;
 
-  @SpeakeasyMetadata({ data: "json, name=start_date" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "start_date" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   startDate?: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=time_zone" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "time_zone" })
   timeZone?: string;
 }

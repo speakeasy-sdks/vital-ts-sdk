@@ -1,13 +1,17 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose } from "class-transformer";
 
 
 export class PhysicianClientFacing extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=first_name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "first_name" })
   firstName: string;
 
-  @SpeakeasyMetadata({ data: "json, name=last_name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "last_name" })
   lastName: string;
 
-  @SpeakeasyMetadata({ data: "json, name=npi" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "npi" })
   npi: string;
 }

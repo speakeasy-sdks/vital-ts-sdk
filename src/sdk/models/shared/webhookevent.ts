@@ -1,14 +1,18 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { WebhookEventTypeEnum } from "./webhookeventtypeenum";
+import { Expose } from "class-transformer";
 
 
 export class WebhookEvent extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=eventData" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "eventData" })
   eventData: any;
 
-  @SpeakeasyMetadata({ data: "json, name=eventTime" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "eventTime" })
   eventTime: string;
 
-  @SpeakeasyMetadata({ data: "json, name=eventType" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "eventType" })
   eventType: WebhookEventTypeEnum;
 }

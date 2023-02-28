@@ -1,14 +1,21 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { QuantitySample } from "./quantitysample";
+import { Expose, Type } from "class-transformer";
 
 
 export class ManualBloodPressureCreation extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=diastolic" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "diastolic" })
+  @Type(() => QuantitySample)
   diastolic: QuantitySample;
 
-  @SpeakeasyMetadata({ data: "json, name=pulse" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "pulse" })
+  @Type(() => QuantitySample)
   pulse?: QuantitySample;
 
-  @SpeakeasyMetadata({ data: "json, name=systolic" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "systolic" })
+  @Type(() => QuantitySample)
   systolic: QuantitySample;
 }

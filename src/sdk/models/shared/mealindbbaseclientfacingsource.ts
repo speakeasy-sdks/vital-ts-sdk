@@ -4,48 +4,80 @@ import { Energy } from "./energy";
 import { Macros } from "./macros";
 import { MealData } from "./mealdata";
 import { Micros } from "./micros";
+import { Expose, plainToInstance, Transform, Type } from "class-transformer";
 
 
 export class MealInDBBaseClientFacingSource extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=created_at" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "created_at" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   createdAt: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=data", elemType: MealData })
+  @SpeakeasyMetadata({ elemType: MealData })
+  @Expose({ name: "data" })
+  @Transform(({ value }) => {
+    const obj: Record<string, MealData> = {};
+    for (const key in value) {
+      obj[key] = plainToInstance(MealData,
+        value[key] as MealData,
+        { excludeExtraneousValues: true }
+      );
+    }
+    return obj;
+  }, { toClassOnly: true })
   data?: Record<string, MealData>;
 
-  @SpeakeasyMetadata({ data: "json, name=energy" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "energy" })
+  @Type(() => Energy)
   energy?: Energy;
 
-  @SpeakeasyMetadata({ data: "json, name=id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "id" })
   id: string;
 
-  @SpeakeasyMetadata({ data: "json, name=macros" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "macros" })
+  @Type(() => Macros)
   macros?: Macros;
 
-  @SpeakeasyMetadata({ data: "json, name=micros" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "micros" })
+  @Type(() => Micros)
   micros?: Micros;
 
-  @SpeakeasyMetadata({ data: "json, name=name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "name" })
   name: string;
 
-  @SpeakeasyMetadata({ data: "json, name=priority_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "priority_id" })
   priorityId: number;
 
-  @SpeakeasyMetadata({ data: "json, name=provider_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "provider_id" })
   providerId: string;
 
-  @SpeakeasyMetadata({ data: "json, name=source" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "source" })
+  @Type(() => ClientFacingSource)
   source: ClientFacingSource;
 
-  @SpeakeasyMetadata({ data: "json, name=source_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "source_id" })
   sourceId: number;
 
-  @SpeakeasyMetadata({ data: "json, name=timestamp" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "timestamp" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   timestamp: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=updated_at" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "updated_at" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   updatedAt: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=user_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "user_id" })
   userId: string;
 }

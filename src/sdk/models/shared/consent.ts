@@ -1,14 +1,19 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { ConsentTypeEnum } from "./consenttypeenum";
+import { Expose, Transform } from "class-transformer";
 
 
 export class Consent extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=consentType" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "consentType" })
   consentType: ConsentTypeEnum;
 
-  @SpeakeasyMetadata({ data: "json, name=timeOfConsent" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "timeOfConsent" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   timeOfConsent?: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=version" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "version" })
   version?: string;
 }

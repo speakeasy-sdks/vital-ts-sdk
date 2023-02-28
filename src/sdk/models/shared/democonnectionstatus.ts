@@ -1,10 +1,13 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose } from "class-transformer";
 
 
 export class DemoConnectionStatus extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=detail" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "detail" })
   detail: string;
 
-  @SpeakeasyMetadata({ data: "json, name=success" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "success" })
   success: boolean;
 }

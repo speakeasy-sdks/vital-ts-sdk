@@ -1,4 +1,5 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose, Transform, Type } from "class-transformer";
 
 
 // ConnectedSourceClientFacingProvider
@@ -6,20 +7,27 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
  * Source the data has come from.
 **/
 export class ConnectedSourceClientFacingProvider extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=logo" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "logo" })
   logo: string;
 
-  @SpeakeasyMetadata({ data: "json, name=name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "name" })
   name: string;
 
-  @SpeakeasyMetadata({ data: "json, name=slug" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "slug" })
   slug: string;
 }
 
 export class ConnectedSourceClientFacing extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=created_on" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "created_on" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
   createdOn: Date;
 
-  @SpeakeasyMetadata({ data: "json, name=source" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "source" })
+  @Type(() => ConnectedSourceClientFacingProvider)
   source: ConnectedSourceClientFacingProvider;
 }

@@ -1,13 +1,17 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose } from "class-transformer";
 
 
 export class Micros extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=minerals" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "minerals" })
   minerals?: Record<string, number>;
 
-  @SpeakeasyMetadata({ data: "json, name=trace_elements" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "trace_elements" })
   traceElements?: Record<string, number>;
 
-  @SpeakeasyMetadata({ data: "json, name=vitamins" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "vitamins" })
   vitamins?: Record<string, number>;
 }

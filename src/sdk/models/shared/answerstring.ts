@@ -1,7 +1,9 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose } from "class-transformer";
 
 
 export class AnswerString extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=valueString" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "valueString" })
   valueString: string;
 }

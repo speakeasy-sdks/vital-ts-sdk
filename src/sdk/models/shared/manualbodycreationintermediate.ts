@@ -1,11 +1,16 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { QuantitySample } from "./quantitysample";
+import { Expose, Type } from "class-transformer";
 
 
 export class ManualBodyCreationIntermediate extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=body_fat_percentage", elemType: QuantitySample })
+  @SpeakeasyMetadata({ elemType: QuantitySample })
+  @Expose({ name: "body_fat_percentage" })
+  @Type(() => QuantitySample)
   bodyFatPercentage: QuantitySample[];
 
-  @SpeakeasyMetadata({ data: "json, name=body_mass", elemType: QuantitySample })
+  @SpeakeasyMetadata({ elemType: QuantitySample })
+  @Expose({ name: "body_mass" })
+  @Type(() => QuantitySample)
   bodyMass: QuantitySample[];
 }

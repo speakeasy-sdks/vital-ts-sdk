@@ -1,13 +1,17 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose } from "class-transformer";
 
 
 export class ValidationError extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=loc" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "loc" })
   loc: any[];
 
-  @SpeakeasyMetadata({ data: "json, name=msg" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "msg" })
   msg: string;
 
-  @SpeakeasyMetadata({ data: "json, name=type" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "type" })
   type: string;
 }
