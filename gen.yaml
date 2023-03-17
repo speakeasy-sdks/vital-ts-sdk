@@ -1,9 +1,9 @@
 configVersion: 1.0.0
 generation:
   telemetryEnabled: false
-  sdkClassName: gusto
+  sdkClassName: vital
   sdkFlattening: true
 typescript:
   version: 0.4.1
-  author: gusto
-  packageName: "@speakeasy-sdks/gusto"
+  author: speakeasy-sdks
+  packageName: "@speakeasy-sdks/vital"
